@@ -3,6 +3,8 @@ package scouting.active;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 /**
  * This class is a visual representation of a clickable map.
@@ -14,11 +16,13 @@ public class ClickableFieldMap extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private Image map;
+	private JFrame parentFrame;
 	
-	public ClickableFieldMap(ClickableMapTemplate template){
+	public ClickableFieldMap(ClickableMapTemplate template, JFrame parentFrame){
 		map = ImageMaker.createImage(template.getImagePath());
 		setLayout(null);
 		addClickRegion(template);
+		this.parentFrame = parentFrame;
 	}
 	
 	public void addClickRegion(Rectangle dim, ClickRegion cr){

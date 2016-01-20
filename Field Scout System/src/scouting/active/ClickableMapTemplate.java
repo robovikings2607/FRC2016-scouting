@@ -1,12 +1,14 @@
 package scouting.active;
 
 import java.awt.Rectangle;
+
+import javax.swing.JFrame;
 /**
  * A ClickableMapTemplate contains all of the information necessary to create an interactive field map
  * @author Michael
  *
  */
-public class ClickableMapTemplate {
+public class ClickableMapTemplate<T extends ClickRegion> {
 	private Rectangle[] regionMap;
 	private String imagePath;
 	private ClickRegion areaType;
@@ -25,6 +27,10 @@ public class ClickableMapTemplate {
 		return imagePath;
 	}
 
+	public T getNewClickRegion(FieldScoutGUI parentFrame){
+		
+	}
+	
 	public ClickRegion getAreaType() {
 		return areaType;
 	}

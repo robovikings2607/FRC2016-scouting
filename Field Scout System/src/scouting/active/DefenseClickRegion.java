@@ -24,17 +24,16 @@ public class DefenseClickRegion extends ClickRegion {
 	private int defenseNumber;
 	private String defenseName;
 	private boolean isSelected, isFilled;
-	private FieldScoutGUI parentFrame;
 	
 	/**
 	 * I have no clue if this actually works. It may lose the ability to be clicked,
 	 * who knows. 
 	 * @param number the number of the defense in the outer works
 	 */
-	public DefenseClickRegion(int number, FieldScoutGUI parent){
+	public DefenseClickRegion(int number, FieldScoutGUI parentFrame){
+		super(parentFrame);
 		defenseNumber = number;
 		defenseName = SelectionArea.emptyText;
-		parentFrame = parent;
 		this.addMouseMotionListener(new DefenseClickRegionListener());
 	}
 	
@@ -42,7 +41,8 @@ public class DefenseClickRegion extends ClickRegion {
 		
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			parentFrame.getSelectionArea().showSelector(Defense.findGroup(defenseName));
+			FieldScoutGUI parent = getParentFrame();
+			
 		}
 
 		@Override

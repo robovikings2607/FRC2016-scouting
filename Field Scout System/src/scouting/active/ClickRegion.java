@@ -10,5 +10,13 @@ import javax.swing.JPanel;
 public class ClickRegion extends JPanel{
 
 	private static final long serialVersionUID = 1L;
+	private FieldScoutGUI parentFrame;
+	
+	public ClickRegion(FieldScoutGUI parentFrame){
+		this.parentFrame = parentFrame;
+	}
 
+	public FieldScoutGUI getParentFrame() {
+		return parentFrame;
+	}
 }
