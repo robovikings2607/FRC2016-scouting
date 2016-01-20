@@ -46,7 +46,7 @@ public class Defense {
 		group = gr;
 	}
 	
-	private static char findGroup(String dName){
+	public static char findGroup(String dName){
 		if (dName.equals("Cheval de Frise") || dName.equals("Portcullis")){
 			return 'A';
 		} else if (dName.equals("Moat") || dName.equals("Ramparts")){

@@ -5,6 +5,9 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.event.MouseInputListener;
+
+import scouting.datastorage.Defense;
 /**
  * This is the {@link ClickRegion} to be used by the field scouts for interacting
  * with defenses. 
@@ -21,28 +24,65 @@ public class DefenseClickRegion extends ClickRegion {
 	private int defenseNumber;
 	private String defenseName;
 	private boolean isSelected, isFilled;
+	private FieldScoutGUI parentFrame;
 	
-	public DefenseClickRegion(int number){
+	/**
+	 * I have no clue if this actually works. It may lose the ability to be clicked,
+	 * who knows. 
+	 * @param number the number of the defense in the outer works
+	 */
+	public DefenseClickRegion(int number, FieldScoutGUI parent){
+		defenseNumber = number;
+		defenseName = SelectionArea.emptyText;
+		parentFrame = parent;
+		this.addMouseMotionListener(new DefenseClickRegionListener());
+	}
+	
+	private class DefenseClickRegionListener implements MouseInputListener {
 		
-	}
-	
-	public void mouseEntered(MouseEvent e){
-		isSelected = true;
-	}
-	
-	public void mouseExited(MouseEvent e){
-		isSelected = false;
-	}
-	
-	public void mouseClicked(MouseEvent e){
-		//open up defense selection panel
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			parentFrame.getSelectionArea().showSelector(Defense.findGroup(defenseName));
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			isSelected = true;
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			isSelected = false;
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			
+		}
+
+		@Override
+		public void mouseDragged(MouseEvent arg0) {			
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent arg0) {	
+		}
 	}
 	
 	public void setDefenseName(String defenseName){
 		this.defenseName = defenseName;
 		isFilled = !defenseName.equals("(none)");
 	}
-	
+		
+	public String getDefenseName() {
+		return defenseName;
+	}
+
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		if(isFilled){
