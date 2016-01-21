@@ -32,7 +32,7 @@ public class DefenseClickRegion extends JPanel{
 		this.dims = dims;
 		defenseNumber = number;
 		defenseName = SelectionArea.emptyText;
-		this.addMouseMotionListener(new DefenseClickRegionListener());
+		this.addMouseListener(new DefenseClickRegionListener());
 	}
 	
 	public void addSelectionArea(SelectionArea selector){
@@ -45,19 +45,26 @@ public class DefenseClickRegion extends JPanel{
 
 	private class DefenseClickRegionListener implements MouseInputListener {
 		
+		public DefenseClickRegionListener(){
+			System.out.println("DefenseClickRegion created: " + this);
+		}
+		
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			selector.display(getThis());
+			System.out.println("Click!");
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
 			isSelected = true;
+			getThis().repaint();
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0) {
 			isSelected = false;
+			getThis().repaint();
 		}
 
 		@Override
@@ -104,9 +111,11 @@ public class DefenseClickRegion extends JPanel{
 		} else {
 			setBackground(unfilled);
 		}
-		g.drawString(defenseNumber + "", getWidth() / 2, getHeight() / 2);
+		g.drawString(defenseNumber + 1 + "", getWidth() / 2, getHeight() / 2);
 		if(isSelected){
-			setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.YELLOW));
+			setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.YELLOW));
+		} else {
+			setBorder(null);
 		}
 	}
 }

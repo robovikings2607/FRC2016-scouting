@@ -22,7 +22,7 @@ public class FieldScoutGUI extends JPanel{
 	private SelectionPanel selector;
 	
 	public static void main(String[] args){
-		JFrame.setDefaultLookAndFeelDecorated(true);
+		//JFrame.setDefaultLookAndFeelDecorated(true);
 		// Create and set up the frame.
 		JFrame frame = new JFrame("Field Scouting System v1.0");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,7 +64,7 @@ public class FieldScoutGUI extends JPanel{
 		SelectionArea redSelector = new SelectionArea(selector);
 		SelectionArea blueSelector = new SelectionArea(selector);
 		
-		map = new ClickableFieldMap("C:\\Users\\Public\\Documents\\fieldMap.PNG");
+		map = new ClickableFieldMap("fieldMap.PNG");
 		
 		ClickableOuterWorks blueOuterWorks = new ClickableOuterWorks(blueSelector);
 		for(int i = 0; i < 4; i++){

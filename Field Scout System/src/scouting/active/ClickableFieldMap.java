@@ -3,6 +3,7 @@ package scouting.active;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -15,12 +16,12 @@ import javax.swing.JPanel;
 public class ClickableFieldMap extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
-	private Image map;
+	private BufferedImage map;
 	
 	public ClickableFieldMap(String imagePath){
 		map = ImageMaker.createImage(imagePath);
 		setLayout(null);
-		setSize(1000,1000);
+		setSize(map.getWidth(),map.getHeight());
 	}
 	
 	private void addDefenseClickRegion(DefenseClickRegion dcr){
@@ -35,11 +36,7 @@ public class ClickableFieldMap extends JPanel{
 	}
 
 	protected void paintComponent(Graphics g){
-	    super.paintComponent(g);
-	    
-	    g.setColor(Color.GREEN);
-        g.fillRect(0, 0, 100, 100);
-	    
+	    super.paintComponent(g);	    
         g.drawImage(map, 0, 0, null);
 	}
 }
