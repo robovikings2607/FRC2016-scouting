@@ -1,10 +1,10 @@
 package scouting.active;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Rectangle;
 
-import javax.swing.JFrame;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 /**
  * This class is a visual representation of a clickable map.
@@ -16,29 +16,30 @@ public class ClickableFieldMap extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private Image map;
-	private JFrame parentFrame;
 	
-	public ClickableFieldMap(ClickableMapTemplate template, JFrame parentFrame){
-		map = ImageMaker.createImage(template.getImagePath());
+	public ClickableFieldMap(String imagePath){
+		map = ImageMaker.createImage(imagePath);
 		setLayout(null);
-		addClickRegion(template);
-		this.parentFrame = parentFrame;
+		setSize(1000,1000);
 	}
 	
-	public void addClickRegion(Rectangle dim, ClickRegion cr){
-		add(cr);
-		cr.setBounds(dim);
+	private void addDefenseClickRegion(DefenseClickRegion dcr){
+		add(dcr);
+		dcr.setBounds(dcr.getDims());
 	}
 	
-	public void addClickRegion(ClickableMapTemplate crt){
-		Rectangle[] dims = crt.getRegionMap();
-		for(int i = 0; i < dims.length; i++){
-			addClickRegion(dims[i], crt.getAreaType());
+	public void addOuterWorks(ClickableOuterWorks cow){
+		for(DefenseClickRegion dcr: cow.getDefenses()){
+			addDefenseClickRegion(dcr);
 		}
 	}
-	
+
 	protected void paintComponent(Graphics g){
 	    super.paintComponent(g);
+	    
+	    g.setColor(Color.GREEN);
+        g.fillRect(0, 0, 100, 100);
+	    
         g.drawImage(map, 0, 0, null);
 	}
 }

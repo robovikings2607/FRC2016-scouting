@@ -2,19 +2,19 @@ package scouting.active;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
-
-import scouting.datastorage.Defense;
 /**
  * This is the {@link ClickRegion} to be used by the field scouts for interacting
  * with defenses. 
  * @author Michael
  *
  */
-public class DefenseClickRegion extends ClickRegion {
+public class DefenseClickRegion extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -24,25 +24,30 @@ public class DefenseClickRegion extends ClickRegion {
 	private int defenseNumber;
 	private String defenseName;
 	private boolean isSelected, isFilled;
+	private SelectionArea selector;
+	private Rectangle dims;
 	
-	/**
-	 * I have no clue if this actually works. It may lose the ability to be clicked,
-	 * who knows. 
-	 * @param number the number of the defense in the outer works
-	 */
-	public DefenseClickRegion(int number, FieldScoutGUI parentFrame){
-		super(parentFrame);
+
+	public DefenseClickRegion(int number, Rectangle dims){
+		this.dims = dims;
 		defenseNumber = number;
 		defenseName = SelectionArea.emptyText;
 		this.addMouseMotionListener(new DefenseClickRegionListener());
 	}
 	
+	public void addSelectionArea(SelectionArea selector){
+		this.selector = selector;
+	}
+	
+	public Rectangle getDims() {
+		return dims;
+	}
+
 	private class DefenseClickRegionListener implements MouseInputListener {
 		
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			FieldScoutGUI parent = getParentFrame();
-			
+			selector.display(getThis());
 		}
 
 		@Override
@@ -77,10 +82,19 @@ public class DefenseClickRegion extends ClickRegion {
 	public void setDefenseName(String defenseName){
 		this.defenseName = defenseName;
 		isFilled = !defenseName.equals("(none)");
+		repaint();
 	}
 		
 	public String getDefenseName() {
 		return defenseName;
+	}
+	
+	public int getDefenseNumber(){
+		return defenseNumber;
+	}
+	
+	private DefenseClickRegion getThis(){
+		return this;
 	}
 
 	protected void paintComponent(Graphics g){

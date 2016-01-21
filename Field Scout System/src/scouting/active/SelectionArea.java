@@ -3,6 +3,8 @@ package scouting.active;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
+
+import scouting.datastorage.Defense;
 /**
  * This class extends JComboBox and is the method of selecting which defense goes in the
  * selected position. It interacts primarily with {@link DefenseClickRegion}.
@@ -15,8 +17,12 @@ public class SelectionArea extends JComboBox<String>{
 	public static final String emptyText = "(none)"; 
 	
 	private char[] availableGroups;
+	private SelectionPanel panel;
+	private DefenseClickRegion caller;
 	
-	public SelectionArea(){
+	public SelectionArea(SelectionPanel sp){
+		panel = sp;
+		this.addActionListener(new SelectionAreaListener());
 		setEnabled(true);
 		setEditable(false);
 	}
@@ -27,6 +33,15 @@ public class SelectionArea extends JComboBox<String>{
 			addGroup(c);
 		}
 		addGroup(callingDefense);
+	}
+	
+	public void display(DefenseClickRegion caller){
+		this.caller = caller;
+		panel.replaceSelector(this);
+	}
+	
+	public SelectionPanel getSelectionPanel(){
+		return panel;
 	}
 	
 	private void addGroup(char groupLetter){
@@ -49,8 +64,28 @@ public class SelectionArea extends JComboBox<String>{
 	
 	private class SelectionAreaListener implements ActionListener{
 		
-		public void actionPerformed(ActionEvent arg0) {
-			
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() instanceof JComboBox<?>){
+				JComboBox<String> selector =  (JComboBox<String>) e.getSource();
+				String selectedItem = (String) selector.getSelectedItem();
+				
+				char previousDefenseGroup = Defense.findGroup(caller.getDefenseName());
+				for(char c: availableGroups){
+					if (c == '*'){
+						c = previousDefenseGroup;
+						break;
+					}
+				}
+				
+				caller.setDefenseName(selectedItem);
+				
+				char defenseGroupPicked = Defense.findGroup(selectedItem);
+				for(char c: availableGroups){
+					if (c == defenseGroupPicked){
+						c = '*';
+					}
+				}
+			}
 		}
 	}
 }
