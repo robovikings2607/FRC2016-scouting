@@ -1,10 +1,7 @@
 package scouting.active;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Rectangle;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 /**
@@ -32,7 +29,7 @@ public class FieldScoutGUI extends JPanel{
 		fsg.setOpaque(true); // content panes must be opaque
 		frame.setContentPane(fsg);
 		// Display the window.
-		frame.setSize(1000,800);
+		frame.setSize(1000,600);
 		//frame.pack();
 		frame.setVisible(true);
 		
@@ -48,31 +45,29 @@ public class FieldScoutGUI extends JPanel{
 		
 	}
 	
-	public FieldScoutGUI(){
-		//super("Field Scouting System v1.0");
-		
+	public FieldScoutGUI(){		
 		initialize();
 		
-		setLayout(new BorderLayout());
+		setLayout(null);
 		add(map);
-		//add(new JButton());
+		map.setBounds(0, 0, map.getWidth(), map.getHeight());
+		
 		add(selector);
+		selector.setBounds(map.getWidth()+5, 0, selector.getWidth(), selector.getHeight());
 	}
 	
 	public void initialize(){
 		selector = new SelectionPanel();
-		SelectionArea redSelector = new SelectionArea(selector);
-		SelectionArea blueSelector = new SelectionArea(selector);
 		
 		map = new ClickableFieldMap("fieldMap.PNG");
 		
-		ClickableOuterWorks blueOuterWorks = new ClickableOuterWorks(blueSelector);
+		ClickableOuterWorks blueOuterWorks = new ClickableOuterWorks(selector);
 		for(int i = 0; i < 4; i++){
 			DefenseClickRegion dcr = new DefenseClickRegion(i, new Rectangle(10, 10 + 30 * i, 20, 20));
 			blueOuterWorks.addDefense(dcr);
 		}
 		
-		ClickableOuterWorks redOuterWorks = new ClickableOuterWorks(redSelector);
+		ClickableOuterWorks redOuterWorks = new ClickableOuterWorks(selector);
 		for(int i = 0; i < 4; i++){
 			DefenseClickRegion dcr = new DefenseClickRegion(i, new Rectangle(150, 10 + 30 * i, 20, 20));
 			redOuterWorks.addDefense(dcr);

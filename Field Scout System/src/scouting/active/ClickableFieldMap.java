@@ -2,10 +2,9 @@ package scouting.active;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JComponent;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 /**
  * This class is a visual representation of a clickable map.
@@ -21,7 +20,7 @@ public class ClickableFieldMap extends JPanel{
 	public ClickableFieldMap(String imagePath){
 		map = ImageMaker.createImage(imagePath);
 		setLayout(null);
-		setSize(map.getWidth(),map.getHeight());
+		setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
 	}
 	
 	private void addDefenseClickRegion(DefenseClickRegion dcr){
@@ -34,9 +33,18 @@ public class ClickableFieldMap extends JPanel{
 			addDefenseClickRegion(dcr);
 		}
 	}
+	
+	public int getWidth(){
+		return map.getWidth();
+	}
+	
+	public int getHeight(){
+		return map.getHeight();
+	}
 
 	protected void paintComponent(Graphics g){
-	    super.paintComponent(g);	    
+	    super.paintComponent(g);
+		setSize(map.getWidth(),map.getHeight());
         g.drawImage(map, 0, 0, null);
 	}
 }

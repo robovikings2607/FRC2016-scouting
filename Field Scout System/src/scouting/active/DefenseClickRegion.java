@@ -24,7 +24,7 @@ public class DefenseClickRegion extends JPanel{
 	private int defenseNumber;
 	private String defenseName;
 	private boolean isSelected, isFilled;
-	private SelectionArea selector;
+	private ClickableOuterWorks outerWorks;
 	private Rectangle dims;
 	
 
@@ -35,8 +35,8 @@ public class DefenseClickRegion extends JPanel{
 		this.addMouseListener(new DefenseClickRegionListener());
 	}
 	
-	public void addSelectionArea(SelectionArea selector){
-		this.selector = selector;
+	public void addToOuterWorks(ClickableOuterWorks cow){
+		this.outerWorks = cow;
 	}
 	
 	public Rectangle getDims() {
@@ -45,13 +45,9 @@ public class DefenseClickRegion extends JPanel{
 
 	private class DefenseClickRegionListener implements MouseInputListener {
 		
-		public DefenseClickRegionListener(){
-			System.out.println("DefenseClickRegion created: " + this);
-		}
-		
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			selector.display(getThis());
+			outerWorks.displaySelector(getThis());
 			System.out.println("Click!");
 		}
 

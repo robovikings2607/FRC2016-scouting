@@ -7,7 +7,7 @@ import javax.swing.JComboBox;
 import scouting.datastorage.Defense;
 /**
  * This class extends JComboBox and is the method of selecting which defense goes in the
- * selected position. It interacts primarily with {@link DefenseClickRegion}.
+ * selected position.
  * @author Michael
  *
  */
@@ -15,30 +15,33 @@ public class SelectionArea extends JComboBox<String>{
 	
 	private static final long serialVersionUID = 1L;
 	public static final String emptyText = "(none)"; 
+	private static final String[] defenseList = {"Cheval de Frise", "Portcullis", "Moat", "Ramparts", "Drawbridge", "Sally Port", "Rock Wall", "Rough Terrain"};
 	
 	private char[] availableGroups;
 	private SelectionPanel panel;
 	private DefenseClickRegion caller;
 	
-	public SelectionArea(SelectionPanel sp){
+	public SelectionArea(char[] availableGroups, DefenseClickRegion caller){
+		this.caller = caller;
+		this.availableGroups = availableGroups;
+		for(char c: availableGroups){
+			addGroup(c);
+		}
+		addGroup(Defense.findGroup(caller.getDefenseName()));
+	}
+	
+/*	public SelectionArea(SelectionPanel sp){
 		panel = sp;
 		this.addActionListener(new SelectionAreaListener());
 		setEnabled(true);
 		setEditable(false);
 	}
 	
-	public void showSelector(char callingDefense){
-		removeAllItems();
-		for(char c: availableGroups){
-			addGroup(c);
-		}
-		addGroup(callingDefense);
-	}
-	
 	public void display(DefenseClickRegion caller){
 		this.caller = caller;
 		panel.replaceSelector(this);
 	}
+	*/
 	
 	public SelectionPanel getSelectionPanel(){
 		return panel;
