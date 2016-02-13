@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Scouting App 2607</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="spinner">
+        <item name="Blue1"></item>
+        <item name="Blue2"></item>
+        <item name="Blue3"></item>
+        <item name="Red1"></item>
+        <item name="Red2"></item>
+        <item name="Red3"></item>
+
+    </string-array>
+
+</resources>
