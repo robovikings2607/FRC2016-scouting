@@ -20,6 +20,7 @@ public class SelectionPanel extends JPanel implements ActionListener{
 	private static final String[] defenseList = {"Cheval de Frise", "Portcullis", "Moat", "Ramparts", "Drawbridge", "Sally Port", "Rock Wall", "Rough Terrain"};
 
 	private DefenseClickRegion callingRegion;
+	private String selectedDefense;
 	
 	public SelectionPanel(){
 		setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -27,8 +28,12 @@ public class SelectionPanel extends JPanel implements ActionListener{
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 		
 		ButtonGroup defenseSelectors = new ButtonGroup();
+		RadioPickerListener rpl = new RadioPickerListener();
+		
 		for(int i = 0; i < defenseList.length; i++){
 			JRadioButton jrb = new JRadioButton(defenseList[i]);
+			jrb.setActionCommand(defenseList[i]);
+			jrb.addActionListener(rpl);
 			defenseSelectors.add(jrb);
 			add(jrb);
 		}
@@ -37,18 +42,23 @@ public class SelectionPanel extends JPanel implements ActionListener{
 		submitter.addActionListener(this);
 		add(submitter);
 	}
-/*
-	public void replaceSelector(SelectionArea selector){
-		removeAll();
-		add(selector);
+
+	private class RadioPickerListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			selectedDefense = e.getActionCommand();
+			System.out.println(e.getActionCommand() + " selected");
+		}
 	}
-	*/
 	
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setSize(xDim,yDim);
 	}
 	
+	public void setCallingRegion(DefenseClickRegion callingRegion) {
+		this.callingRegion = callingRegion;
+	}
+
 	public int getWidth(){
 		return xDim;
 	}
@@ -58,9 +68,13 @@ public class SelectionPanel extends JPanel implements ActionListener{
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		if(callingRegion != null){
-			callingRegion.setDefenseName(defenseName);
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Attempted to set " + selectedDefense + " to the calling region.");
+		if(!(callingRegion == null)){
+			callingRegion.setDefenseName(selectedDefense);
+			System.out.println("Set: " + callingRegion.toString());
+		} else {
+			System.out.println("Calling region was null");
 		}
 	}
 }

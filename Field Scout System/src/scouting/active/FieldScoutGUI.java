@@ -4,6 +4,8 @@ import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import scouting.datastorage.AllianceColor;
 /**
  * This class extends {@link JFrame} and is the top-level panel in the field scouting gui.
  * It should contain a {@link ClickabeFieldMap}, a {@link SelectionArea}, and a third (as
@@ -61,13 +63,13 @@ public class FieldScoutGUI extends JPanel{
 		
 		map = new ClickableFieldMap("fieldMap.PNG");
 		
-		ClickableOuterWorks blueOuterWorks = new ClickableOuterWorks(selector);
+		ClickableOuterWorks blueOuterWorks = new ClickableOuterWorks(selector, AllianceColor.BLUE);
 		for(int i = 0; i < 4; i++){
 			DefenseClickRegion dcr = new DefenseClickRegion(i, new Rectangle(10, 10 + 30 * i, 20, 20));
 			blueOuterWorks.addDefense(dcr);
 		}
 		
-		ClickableOuterWorks redOuterWorks = new ClickableOuterWorks(selector);
+		ClickableOuterWorks redOuterWorks = new ClickableOuterWorks(selector, AllianceColor.RED);
 		for(int i = 0; i < 4; i++){
 			DefenseClickRegion dcr = new DefenseClickRegion(i, new Rectangle(150, 10 + 30 * i, 20, 20));
 			redOuterWorks.addDefense(dcr);

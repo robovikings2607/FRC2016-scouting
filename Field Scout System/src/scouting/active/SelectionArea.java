@@ -1,16 +1,16 @@
-package scouting.active;
+/*package scouting.active;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 
 import scouting.datastorage.Defense;
-/**
+
  * This class extends JComboBox and is the method of selecting which defense goes in the
  * selected position.
  * @author Michael
  *
- */
+ *
 public class SelectionArea extends JComboBox<String>{
 	
 	private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class SelectionArea extends JComboBox<String>{
 		this.caller = caller;
 		panel.replaceSelector(this);
 	}
-	*/
+	
 	
 	public SelectionPanel getSelectionPanel(){
 		return panel;
@@ -93,3 +93,4 @@ public class SelectionArea extends JComboBox<String>{
 	}
 }
 
+*/

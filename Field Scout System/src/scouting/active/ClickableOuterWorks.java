@@ -1,25 +1,28 @@
 package scouting.active;
 
-import scouting.datastorage.Defense;
+import scouting.datastorage.AllianceColor;
+//import scouting.datastorage.Defense;
 import scouting.datastorage.OuterWorks;
 
 public class ClickableOuterWorks {
 	private DefenseClickRegion[] defenses;
-	private char[] availableGroups = {'A', 'B', 'C', 'D'};
+	//private char[] availableGroups = {'A', 'B', 'C', 'D'};
 	private SelectionPanel selector;
+	private AllianceColor color;
 	
-	public ClickableOuterWorks(SelectionPanel selector){
+	public ClickableOuterWorks(SelectionPanel selector, AllianceColor color){
+		this.color = color;
 		this.selector = selector;
 		defenses = new DefenseClickRegion[4];
 	}
 	
 	public void addDefense(DefenseClickRegion dcr){
-		defenses[dcr.getDefenseNumber()] = dcr;
+		defenses[dcr.getDefenseNumber()- 1] = dcr;
 		dcr.addToOuterWorks(this);
 		//dcr.addSelectionArea(selector);
 	}
 	
-	public void updateGroups(){
+	/*public void updateGroups(){
 		char[] emptyCOW = {'A', 'B', 'C', 'D'}; 
 		availableGroups = emptyCOW;
 		for(DefenseClickRegion dcr: defenses){
@@ -35,10 +38,13 @@ public class ClickableOuterWorks {
 			}
 		}
 	}
-
+	*/
 	public void displaySelector(DefenseClickRegion dcr){
-		updateGroups();
-		selector.add(new SelectionArea(availableGroups, dcr));
+		selector.setCallingRegion(dcr);
+	}
+	
+	public AllianceColor getColor(){
+		return color;
 	}
 	
 	public DefenseClickRegion[] getDefenses() {

@@ -17,8 +17,8 @@ import javax.swing.event.MouseInputListener;
 public class DefenseClickRegion extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	
-	private final Color unfilled = Color.RED;
+	private static final String emptyText = "(none)";
+	final Color unfilled = Color.RED;
 	private final Color filled = Color.GREEN;
 	
 	private int defenseNumber;
@@ -31,7 +31,7 @@ public class DefenseClickRegion extends JPanel{
 	public DefenseClickRegion(int number, Rectangle dims){
 		this.dims = dims;
 		defenseNumber = number;
-		defenseName = SelectionArea.emptyText;
+		defenseName = emptyText;
 		this.addMouseListener(new DefenseClickRegionListener());
 	}
 	
@@ -48,7 +48,7 @@ public class DefenseClickRegion extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			outerWorks.displaySelector(getThis());
-			System.out.println("Click!");
+			System.out.println(getThis().toString() + " clicked.");
 		}
 
 		@Override
@@ -93,11 +93,25 @@ public class DefenseClickRegion extends JPanel{
 	}
 	
 	public int getDefenseNumber(){
-		return defenseNumber;
+		return defenseNumber + 1;
 	}
 	
 	private DefenseClickRegion getThis(){
 		return this;
+	}
+	
+	public String toString(){
+		String name;
+		switch(outerWorks.getColor()){
+			case RED: name = "Red";
+				break;
+			case BLUE: name = "Blue";
+				break;
+			default: name = "Unspecified Color";
+		}
+		
+		name += " " + getDefenseNumber() + ": " + getDefenseName();
+		return name;
 	}
 
 	protected void paintComponent(Graphics g){
@@ -107,7 +121,7 @@ public class DefenseClickRegion extends JPanel{
 		} else {
 			setBackground(unfilled);
 		}
-		g.drawString(defenseNumber + 1 + "", getWidth() / 2, getHeight() / 2);
+		g.drawString(getDefenseNumber() + "", getWidth() / 2, getHeight() / 2);
 		if(isSelected){
 			setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.YELLOW));
 		} else {
