@@ -8,6 +8,6 @@ public class Data {
 
     static int blhGoal, blLGoal, blMiss, rdhGoal, rdlGoal, rdMiss, fouls, techFouls;
 
-    boolean challenge, scale, spy, broken, absent, reach;
+    static boolean challenge, scale, spy, broken, absent, reach;
 
 }
