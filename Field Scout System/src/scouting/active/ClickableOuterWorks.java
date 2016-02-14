@@ -22,6 +22,13 @@ public class ClickableOuterWorks {
 		//dcr.addSelectionArea(selector);
 	}
 	
+	public void clearBorders(){
+		for(int i = 0; i < defenses.length; i++){
+			defenses[i].setIsSelected(false);
+			defenses[0].repaint();
+		}
+	}
+	
 	/*public void updateGroups(){
 		char[] emptyCOW = {'A', 'B', 'C', 'D'}; 
 		availableGroups = emptyCOW;

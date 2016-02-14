@@ -21,13 +21,14 @@ public class SelectionPanel extends JPanel implements ActionListener{
 
 	private DefenseClickRegion callingRegion;
 	private String selectedDefense;
+	private ButtonGroup defenseSelectors;
 	
 	public SelectionPanel(){
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		setSize(xDim,yDim);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 		
-		ButtonGroup defenseSelectors = new ButtonGroup();
+		defenseSelectors = new ButtonGroup();
 		RadioPickerListener rpl = new RadioPickerListener();
 		
 		for(int i = 0; i < defenseList.length; i++){
@@ -57,6 +58,8 @@ public class SelectionPanel extends JPanel implements ActionListener{
 	
 	public void setCallingRegion(DefenseClickRegion callingRegion) {
 		this.callingRegion = callingRegion;
+		defenseSelectors.clearSelection();
+		selectedDefense = null;
 	}
 
 	public int getWidth(){
@@ -70,11 +73,14 @@ public class SelectionPanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Attempted to set " + selectedDefense + " to the calling region.");
-		if(!(callingRegion == null)){
+		if(callingRegion != null && selectedDefense != null){
 			callingRegion.setDefenseName(selectedDefense);
 			System.out.println("Set: " + callingRegion.toString());
 		} else {
-			System.out.println("Calling region was null");
+			if(callingRegion == null)
+				System.out.println("Calling region was null");
+			if(selectedDefense == null)
+				System.out.println("Selected defense was null");
 		}
 	}
 }

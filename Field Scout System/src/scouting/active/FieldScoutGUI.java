@@ -19,19 +19,20 @@ public class FieldScoutGUI extends JPanel{
 	
 	private ClickableFieldMap map;
 	private SelectionPanel selector;
+	private InfoPanel info;
+	private ClickableOuterWorks[] cowList = new ClickableOuterWorks[2];
 	
 	public static void main(String[] args){
-		//JFrame.setDefaultLookAndFeelDecorated(true);
-		// Create and set up the frame.
+
 		JFrame frame = new JFrame("Field Scouting System v1.0");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		FieldScoutGUI fsg = new FieldScoutGUI();
 		
-		fsg.setOpaque(true); // content panes must be opaque
+		fsg.setOpaque(true); 
 		frame.setContentPane(fsg);
 		// Display the window.
-		frame.setSize(1000,600);
+		frame.setSize(fsg.map.getWidth() + fsg.selector.getWidth() + 21,600);
 		//frame.pack();
 		frame.setVisible(true);
 		
@@ -43,8 +44,6 @@ public class FieldScoutGUI extends JPanel{
 		setSize(1000,800);
 		//pack();
 		setVisible(true);
-		
-		
 	}
 	
 	public FieldScoutGUI(){		
@@ -56,24 +55,31 @@ public class FieldScoutGUI extends JPanel{
 		
 		add(selector);
 		selector.setBounds(map.getWidth()+5, 0, selector.getWidth(), selector.getHeight());
+		
+		add(info);
+		info.setBounds(0, map.getHeight() + 5, map.getWidth(), 100);
 	}
 	
 	public void initialize(){
 		selector = new SelectionPanel();
+		info = new InfoPanel(1);
 		
 		map = new ClickableFieldMap("fieldMap.PNG");
 		
 		ClickableOuterWorks blueOuterWorks = new ClickableOuterWorks(selector, AllianceColor.BLUE);
 		for(int i = 0; i < 4; i++){
-			DefenseClickRegion dcr = new DefenseClickRegion(i, new Rectangle(10, 10 + 30 * i, 20, 20));
+			DefenseClickRegion dcr = new DefenseClickRegion(i, new Rectangle(244, 78 + 54 * i, 23, 51));
 			blueOuterWorks.addDefense(dcr);
 		}
 		
 		ClickableOuterWorks redOuterWorks = new ClickableOuterWorks(selector, AllianceColor.RED);
 		for(int i = 0; i < 4; i++){
-			DefenseClickRegion dcr = new DefenseClickRegion(i, new Rectangle(150, 10 + 30 * i, 20, 20));
+			DefenseClickRegion dcr = new DefenseClickRegion(i, new Rectangle(469, 237 - 54 * i, 23, 51));
 			redOuterWorks.addDefense(dcr);
 		}
+		
+		cowList[0] = blueOuterWorks;
+		cowList[1] = redOuterWorks;
 		
 		map.addOuterWorks(blueOuterWorks);
 		map.addOuterWorks(redOuterWorks);

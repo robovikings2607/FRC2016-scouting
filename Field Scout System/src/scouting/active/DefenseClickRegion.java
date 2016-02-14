@@ -47,20 +47,21 @@ public class DefenseClickRegion extends JPanel{
 		
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
+			outerWorks.clearBorders();
 			outerWorks.displaySelector(getThis());
+			isSelected = true;
 			System.out.println(getThis().toString() + " clicked.");
+			getThis().repaint();
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
-			isSelected = true;
-			getThis().repaint();
+
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0) {
-			isSelected = false;
-			getThis().repaint();
+
 		}
 
 		@Override
@@ -84,7 +85,9 @@ public class DefenseClickRegion extends JPanel{
 	
 	public void setDefenseName(String defenseName){
 		this.defenseName = defenseName;
+		isSelected = false;
 		isFilled = !defenseName.equals("(none)");
+		setToolTipText(defenseName);
 		repaint();
 	}
 		
@@ -98,6 +101,10 @@ public class DefenseClickRegion extends JPanel{
 	
 	private DefenseClickRegion getThis(){
 		return this;
+	}
+	
+	public void setIsSelected(boolean isSelected){
+		this.isSelected = isSelected;
 	}
 	
 	public String toString(){

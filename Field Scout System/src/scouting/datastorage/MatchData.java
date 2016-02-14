@@ -27,7 +27,19 @@ public class MatchData {
 	public void setWinningAlliance(AllianceColor winningAlliance) {
 		this.winningAlliance = winningAlliance;
 	}
+	
+	public void setLayout(FieldLayout layout) {
+		this.layout = layout;
+	}
 
+	public void setMatchNumber(int matchNumber) {
+		this.matchNumber = matchNumber;
+	}
+
+	public void setTeams(int[] teams) {
+		this.teams = teams;
+	}
+	
 	/**
 	 * This refers to which alliance's defenses were breached, NOT which alliance did the breaching 
 	 */
