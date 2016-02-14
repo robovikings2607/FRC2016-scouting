@@ -25,4 +25,12 @@ public class OuterWorks {
 	public Defense getDefense(int i){
 		return defenseLayout[i - 1];
 	}
+	
+	public String toString(){
+		String s = "";
+		for(int i = 0; i < defenseLayout.length; i++){
+			s += i + 1 + "-" + defenseLayout[i].getName() + " ";
+		}
+		return s;
+	}
 }

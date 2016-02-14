@@ -18,4 +18,9 @@ public class FieldLayout {
 	public OuterWorks getBlueOuterWorks() {
 		return blueOuterWorks;
 	}
+	
+	public String toString(){
+		return "Red: " + redOuterWorks.toString() + "\n" +
+			   "Blue: " + blueOuterWorks.toString();
+	}
 }

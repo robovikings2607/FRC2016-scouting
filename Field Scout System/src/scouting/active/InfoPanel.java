@@ -4,22 +4,27 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import scouting.datastorage.AllianceColor;
+import scouting.datastorage.MatchData;
 
 public class InfoPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
+	public static final String noErrorMessage = "Error-Free";
 	
-	private JRadioButton[] victoryButtons;
+//	private JRadioButton[] victoryButtons;
 	private JCheckBox[] breachBoxes;
 	private JCheckBox[] captureBoxes;
 	private JTextField[] scoreFields;
 	private JTextField[] teamNumbers;
+	private JTextField matchNumberField;
+	
+	private MatchData matchdata;
 
 	public InfoPanel(int matchNumber){
 		GridLayout layout = new GridLayout(1,0);
@@ -28,10 +33,12 @@ public class InfoPanel extends JPanel{
 		
 		setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
 		
-		add(makeVictoryPanel());
+		add(makeMatchPanel());
 		add(makeBreachCapturePanel());
 		add(makeScorePanel());
 		add(makeTeamPanel());
+		
+		matchNumberField.setText(matchNumber + "");
 	}
 	
 	public void setTeamNumbers(int[] teamNumbers){
@@ -40,23 +47,107 @@ public class InfoPanel extends JPanel{
 		}
 	}
 	
-	private JPanel makeVictoryPanel(){
-		JPanel victoryPanel = new JPanel();
-		victoryPanel.setLayout(new GridLayout(0,1));
-		victoryPanel.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 3));
+	/**
+	 * This method check the validity of all entered data and creates part of a {@link MatchData} object which can
+	 * be fetched later.  
+	 * @return An error message to be displayed or the public String constant noErrorMessage if the data is entirely valid.
+	 */
+	public String validateData(){
+		//Sets up the MatchData object without a fieldLayout
+		matchdata = new MatchData();
 		
-		victoryPanel.add(new JLabel("Winning Alliance:"));
-		victoryButtons = new JRadioButton[3];
-		ButtonGroup victoryGroup = new ButtonGroup();
-		victoryButtons[0] = new JRadioButton("Red");
-		victoryButtons[1] = new JRadioButton("Blue");
-		victoryButtons[2] = new JRadioButton("Tie");
-		for(int i = 0; i < victoryButtons.length; i++){
-			victoryGroup.add(victoryButtons[i]);
-			victoryPanel.add(victoryButtons[i]);
+		//Checks to see if all team numbers are actual numbers
+		int[] teamNumbers = new int[this.teamNumbers.length];
+		for(int i = 0; i < teamNumbers.length; i++){
+			try{
+				int pos = (i*3)%5;
+				if(i == 5)
+					pos = 5;
+				teamNumbers[pos] = Integer.parseInt(this.teamNumbers[i].getText());
+			} catch (NumberFormatException e){
+				String err = "The team number for ";
+				if (i%2 == 0){
+					err += "Red ";
+				} else {
+					err += "Blue ";
+				}
+				err += (i+2)/2 + " does not contain a readable integer.";
+				return err;
+			}
+		}
+		matchdata.setTeams(teamNumbers);
+		
+		//Checks to see if the match number is valid
+		try{
+			matchdata.setMatchNumber(Integer.parseInt(matchNumberField.getText()));
+		} catch (NumberFormatException e){
+			return "The match number is not a readable integer.";
 		}
 		
-		return victoryPanel;
+		//Checks to see if the final scores are valid
+		int[] finalScores = new int[scoreFields.length];
+		for(int i =0; i < scoreFields.length; i++){
+			try{
+				finalScores[i] = Integer.parseInt(scoreFields[i].getText());
+			} catch (NumberFormatException e) {
+				String err = "The ";
+				if(i == 0){
+					err += "Red";
+				} else {
+					err += "Blue";
+				}
+				return err + " final score is not a readable integer.";
+			}
+		}
+		matchdata.setFinalScores(finalScores);
+		
+		//Adds the breach and capture data, but will not return any error messages
+		boolean redBreach = breachBoxes[0].isSelected();
+		boolean blueBreach = breachBoxes[1].isSelected();
+		if(redBreach && blueBreach){
+			matchdata.setBreach(AllianceColor.BOTH);
+		} else if (redBreach){
+			matchdata.setBreach(AllianceColor.RED);
+		} else if (blueBreach){
+			matchdata.setBreach(AllianceColor.BLUE);
+		} else {
+			matchdata.setBreach(AllianceColor.NEITHER);
+		}
+		
+		boolean redCapture = captureBoxes[0].isSelected();
+		boolean blueCapture = captureBoxes[1].isSelected();
+		if(redCapture && blueCapture){
+			matchdata.setBreach(AllianceColor.BOTH);
+		} else if (redCapture){
+			matchdata.setBreach(AllianceColor.RED);
+		} else if (blueCapture){
+			matchdata.setBreach(AllianceColor.BLUE);
+		} else {
+			matchdata.setBreach(AllianceColor.NEITHER);
+		}
+		
+		return noErrorMessage;
+	}
+
+	public MatchData getData(){
+		return matchdata;
+	}
+	
+	private JPanel makeMatchPanel(){
+		JPanel matchPanel = new JPanel();
+		matchPanel.setLayout(new GridLayout(0,2));
+		matchPanel.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 3));
+		
+		matchPanel.add(new JLabel("Match Number:"));
+		matchPanel.add(new JPanel()); //Placeholder
+		matchNumberField = new JTextField("");
+		matchNumberField.setEditable(true);
+		matchPanel.add(matchNumberField);
+		
+		matchPanel.add(new JPanel()); //Placeholder
+		matchPanel.add(new JPanel()); //Placeholder
+
+		return matchPanel;
 	}
 	
 	private JPanel makeBreachCapturePanel(){
@@ -106,9 +197,9 @@ public class InfoPanel extends JPanel{
 		scoreLabels[1] = new JLabel("Blue Score:");
 		
 		scoreFields = new JTextField[2];
-		scoreFields[0] = new JTextField(4);
+		scoreFields[0] = new JTextField("");
 		scoreFields[0].setEditable(true);
-		scoreFields[1] = new JTextField(4);
+		scoreFields[1] = new JTextField("");
 		scoreFields[1].setEditable(true);
 		
 		for(int i = 0; i < scoreFields.length; i++){
@@ -131,7 +222,7 @@ public class InfoPanel extends JPanel{
 		
 		teamNumbers = new JTextField[6];
 		for(int i = 0; i < 6; i++){
-			JTextField jtf = new JTextField();
+			JTextField jtf = new JTextField("");
 			jtf.setEditable(true);
 			Color borderColor;
 			if(i % 2 == 0)

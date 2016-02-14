@@ -63,10 +63,11 @@ public class ClickableOuterWorks {
 	}
 	
 	public OuterWorks getData(){
-		String[] defenseNames = new String[defenses.length];
-		for(int i = 0; i < defenses.length; i++){
+		String[] defenseNames = new String[defenses.length + 1];
+		for(int i = 1; i < defenses.length; i++){
 			defenseNames[i] = defenses[i].getDefenseName();
 		}
+		defenseNames[0] = "Low Bar";
 		return new OuterWorks(defenseNames);
 	}
 }

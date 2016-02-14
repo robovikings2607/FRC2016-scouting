@@ -1,4 +1,5 @@
 package scouting.datastorage;
+
 /**
  * This class represents the overall data for a match that is not robot-specific
  * These data were pulled out so as to eliminate redundant work by the robot scouts
@@ -9,16 +10,17 @@ public class MatchData {
 	private FieldLayout layout;
 	private int matchNumber;
 	private int[] teams;
+	private int[] finalScores;
 	
+
+
 	/**
 	 * @param fl The layout of the field for the match
-	 * @param match The match number
-	 * @param t The list of teams in this match, starting with the Red alliance
 	 */
-	public MatchData(FieldLayout fl, int match, int[] t){
-		teams = t;
-		layout = fl;
-		matchNumber = match;
+	public MatchData(){
+	//	teams = t;
+	//	layout = fl;
+    //	matchNumber = match;
 	}
 	
 	/**
@@ -38,6 +40,21 @@ public class MatchData {
 
 	public void setTeams(int[] teams) {
 		this.teams = teams;
+	}
+	
+	public int[] getFinalScores() {
+		return finalScores;
+	}
+
+	public void setFinalScores(int[] finalScores) {
+		this.finalScores = finalScores;
+		if(finalScores[0] > finalScores[1]){
+			setWinningAlliance(AllianceColor.RED);
+		} else if (finalScores[0] < finalScores[1]){
+			setWinningAlliance(AllianceColor.BLUE);
+		} else {
+			setWinningAlliance(AllianceColor.BOTH);
+		}
 	}
 	
 	/**
@@ -82,5 +99,27 @@ public class MatchData {
 
 	public int[] getTeams() {
 		return teams;
+	}
+	
+	public String toString(){
+		String s = "";
+		s += "Match: " + matchNumber + "\n";
+		s += "Red Teams: ";
+		for(int i =0; i < 3; i++){
+			s+= teams[i] + ", ";
+		}
+		s += "\n" + "Blue Teams: ";
+		for(int i =3; i < 6; i++){
+			s+= teams[i] + ", ";
+		}
+		s += "\n" + "Red Final Score: " + finalScores[0] + "\n";
+		s += "Blue Final Score: " + finalScores[1] + "\n";
+		s += "Winner: " + winningAlliance.name() + "\n";
+		s += "Defenses Breached: " + breach.name() + "\n";
+		s += "Towers Captured: " + capture.name() + "\n";
+		
+		s += layout.toString();
+		
+		return s;
 	}
 }
