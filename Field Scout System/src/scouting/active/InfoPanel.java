@@ -17,7 +17,6 @@ public class InfoPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public static final String noErrorMessage = "Error-Free";
 	
-//	private JRadioButton[] victoryButtons;
 	private JCheckBox[] breachBoxes;
 	private JCheckBox[] captureBoxes;
 	private JTextField[] scoreFields;
@@ -26,7 +25,7 @@ public class InfoPanel extends JPanel{
 	
 	private MatchData matchdata;
 
-	public InfoPanel(int matchNumber){
+	public InfoPanel(){
 		GridLayout layout = new GridLayout(1,0);
 		layout.setHgap(5);
 		setLayout(layout);
@@ -38,9 +37,14 @@ public class InfoPanel extends JPanel{
 		add(makeScorePanel());
 		add(makeTeamPanel());
 		
-		matchNumberField.setText(matchNumber + "");
+		matchNumberField.setText("");
 	}
 	
+	/**
+	 * This method accepts team numbers in the following order:
+	 * {Red 1, Blue 1, Red 2, Blue 2, Red 3, Blue 3}
+	 * @param teamNumbers
+	 */
 	public void setTeamNumbers(int[] teamNumbers){
 		for(int i = 0; i < this.teamNumbers.length; i++){
 			this.teamNumbers[i].setText(teamNumbers[i] + "");;
@@ -117,16 +121,40 @@ public class InfoPanel extends JPanel{
 		boolean redCapture = captureBoxes[0].isSelected();
 		boolean blueCapture = captureBoxes[1].isSelected();
 		if(redCapture && blueCapture){
-			matchdata.setBreach(AllianceColor.BOTH);
+			matchdata.setCapture(AllianceColor.BOTH);
 		} else if (redCapture){
-			matchdata.setBreach(AllianceColor.RED);
+			matchdata.setCapture(AllianceColor.RED);
 		} else if (blueCapture){
-			matchdata.setBreach(AllianceColor.BLUE);
+			matchdata.setCapture(AllianceColor.BLUE);
 		} else {
-			matchdata.setBreach(AllianceColor.NEITHER);
+			matchdata.setCapture(AllianceColor.NEITHER);
 		}
 		
 		return noErrorMessage;
+	}
+	
+	/**
+	 * This method resets all values stored in the InfoPanel, including the stored
+	 * {@link MatchData}. Ensure that the MatchData has been extracted before calling reset.
+	 * This method also serves to increment the match number up by one. If the reset method is 
+	 * called while the match number {@link JTextBox} does not contain a parseable int, the
+	 * field is set to a blank String. 
+	 */
+	public void reset(){
+		matchdata = null;
+		for(int i = 0; i < breachBoxes.length; i++){
+			breachBoxes[i].setSelected(false);
+			captureBoxes[i].setSelected(false);
+			scoreFields[i].setText("");
+		}
+		for(int i = 0; i < teamNumbers.length; i++){
+			teamNumbers[i].setText("");
+		}
+		try{
+			matchNumberField.setText("" + (Integer.parseInt(matchNumberField.getText()) + 1 ));
+		} catch (NumberFormatException e){
+			matchNumberField.setText("");
+		}
 	}
 
 	public MatchData getData(){

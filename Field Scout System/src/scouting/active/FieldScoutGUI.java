@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -33,7 +34,7 @@ public class FieldScoutGUI extends JPanel implements ActionListener{
 	
 	public static void main(String[] args){
 
-		JFrame frame = new JFrame("Field Scouting System v1.0");
+		JFrame frame = new JFrame("Field Scouting System v1.7");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		FieldScoutGUI fsg = new FieldScoutGUI();
@@ -74,12 +75,13 @@ public class FieldScoutGUI extends JPanel implements ActionListener{
 		JButton submitinator = new JButton("Submit");
 		submitinator.addActionListener(this);
 		add(submitinator);
+		submitinator.setMnemonic(KeyEvent.VK_ENTER);
 		submitinator.setBounds(map.getWidth() + 5, selector.getHeight() + 5, selector.getWidth(), 50);
 	}
 	
 	public void initialize(){
 		selector = new SelectionPanel();
-		info = new InfoPanel(1);
+		info = new InfoPanel();
 		
 		map = new ClickableFieldMap("fieldMap.PNG");
 		
@@ -108,6 +110,12 @@ public class FieldScoutGUI extends JPanel implements ActionListener{
 
 	}
 	
+	/**
+	 * Resets the data in the {@link InfoPanel} and both {@link ClickableOuterWorks}'s
+	 * to the state they were in at the start of the program. Sets the error display field
+	 * to an empty string.
+	 * Increments match number up by one.
+	 */
 	public void reset(){
 		errorDisplay.setText("");
 		cowList[0].reset();
@@ -121,8 +129,12 @@ public class FieldScoutGUI extends JPanel implements ActionListener{
 	 * @return true if the error message is InfoPanel.noErrorMessage
 	 */
 	public boolean DisplayError(String error){
-		errorDisplay.setText(error);
-		return error.equals(InfoPanel.noErrorMessage);
+		if(error.equals(InfoPanel.noErrorMessage)){
+			return true;
+		} else {
+			errorDisplay.setText(error);
+			return false;
+		}
 	}
 	
 	/**
@@ -134,15 +146,20 @@ public class FieldScoutGUI extends JPanel implements ActionListener{
 		MatchData md = info.getData();
 		md.setLayout(fl);
 		//send data off
+		System.out.println(md.toString());
+		reset();
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		boolean[] validInfo = new boolean[3];
+		
 		validInfo[0] = DisplayError(info.validateData());
-	/*	validInfo[1] = DisplayError(cowList[0].validateData());
+		validInfo[1] = DisplayError(cowList[0].validateData());
 		validInfo[2] = DisplayError(cowList[1].validateData());
+
 		if(validInfo[0] && validInfo[1] && validInfo[2]){
 			extractData();
-		} */
+		} 
+		//if(validInfo[0]) extractData();
 	}
 }

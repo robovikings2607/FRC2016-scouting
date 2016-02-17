@@ -17,7 +17,7 @@ import javax.swing.event.MouseInputListener;
 public class DefenseClickRegion extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	private static final String emptyText = "(none)";
+	public static final String emptyText = "(none)";
 	final Color unfilled = Color.RED;
 	private final Color filled = Color.GREEN;
 	
@@ -42,6 +42,12 @@ public class DefenseClickRegion extends JPanel{
 	public Rectangle getDims() {
 		return dims;
 	}
+	
+	public void reset(){
+		isSelected = false;
+		isFilled = false;
+		defenseName = emptyText;
+	}
 
 	private class DefenseClickRegionListener implements MouseInputListener {
 		
@@ -50,7 +56,7 @@ public class DefenseClickRegion extends JPanel{
 			outerWorks.clearBorders();
 			outerWorks.displaySelector(getThis());
 			isSelected = true;
-			System.out.println(getThis().toString() + " clicked.");
+			//System.out.println(getThis().toString() + " clicked.");
 			getThis().repaint();
 		}
 
@@ -88,6 +94,7 @@ public class DefenseClickRegion extends JPanel{
 		isSelected = false;
 		isFilled = !defenseName.equals("(none)");
 		setToolTipText(defenseName);
+		outerWorks.selectNext(getDefenseNumber());
 		repaint();
 	}
 		
@@ -105,6 +112,7 @@ public class DefenseClickRegion extends JPanel{
 	
 	public void setIsSelected(boolean isSelected){
 		this.isSelected = isSelected;
+		repaint();
 	}
 	
 	public String toString(){
@@ -117,7 +125,7 @@ public class DefenseClickRegion extends JPanel{
 			default: name = "Unspecified Color";
 		}
 		
-		name += " " + getDefenseNumber() + ": " + getDefenseName();
+		name += " " + (6 - getDefenseNumber()) + ": " + getDefenseName();
 		return name;
 	}
 
@@ -128,7 +136,7 @@ public class DefenseClickRegion extends JPanel{
 		} else {
 			setBackground(unfilled);
 		}
-		g.drawString(getDefenseNumber() + "", getWidth() / 2, getHeight() / 2);
+		g.drawString((6 - getDefenseNumber()) + "", getWidth() / 2, getHeight() / 2);
 		if(isSelected){
 			setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.YELLOW));
 		} else {

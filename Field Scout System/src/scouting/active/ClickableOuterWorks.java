@@ -1,12 +1,13 @@
 package scouting.active;
 
 import scouting.datastorage.AllianceColor;
+import scouting.datastorage.Defense;
 //import scouting.datastorage.Defense;
 import scouting.datastorage.OuterWorks;
 
 public class ClickableOuterWorks {
+	
 	private DefenseClickRegion[] defenses;
-	//private char[] availableGroups = {'A', 'B', 'C', 'D'};
 	private SelectionPanel selector;
 	private AllianceColor color;
 	
@@ -19,7 +20,6 @@ public class ClickableOuterWorks {
 	public void addDefense(DefenseClickRegion dcr){
 		defenses[dcr.getDefenseNumber()- 1] = dcr;
 		dcr.addToOuterWorks(this);
-		//dcr.addSelectionArea(selector);
 	}
 	
 	public void clearBorders(){
@@ -29,23 +29,12 @@ public class ClickableOuterWorks {
 		}
 	}
 	
-	/*public void updateGroups(){
-		char[] emptyCOW = {'A', 'B', 'C', 'D'}; 
-		availableGroups = emptyCOW;
-		for(DefenseClickRegion dcr: defenses){
-			String name = dcr.getDefenseName();
-			
-			if(!name.equals(SelectionArea.emptyText)){
-				char c = Defense.findGroup(name);
-				for(int i = 0; i < availableGroups.length; i++){
-					if (availableGroups[i] == c){
-						availableGroups[i] = '*';
-					}
-				}
-			}
+	public void reset(){
+		for(int i = 0; i < defenses.length; i++){
+			defenses[i].reset();
 		}
 	}
-	*/
+	
 	public void displaySelector(DefenseClickRegion dcr){
 		selector.setCallingRegion(dcr);
 	}
@@ -62,12 +51,35 @@ public class ClickableOuterWorks {
 		return selector;
 	}
 	
+	public void selectNext(int callNum){
+		clearBorders();
+		if(callNum < defenses.length){
+			defenses[callNum].setIsSelected(true);
+			displaySelector(defenses[callNum]);
+		}
+	}
+	
 	public OuterWorks getData(){
 		String[] defenseNames = new String[defenses.length + 1];
-		for(int i = 1; i < defenses.length; i++){
-			defenseNames[i] = defenses[i].getDefenseName();
+		for(int i = 0; i < defenses.length; i++){
+			defenseNames[i + 1] = defenses[i].getDefenseName();
 		}
 		defenseNames[0] = "Low Bar";
 		return new OuterWorks(defenseNames);
+	}
+	
+	public String validateData(){
+		for(int i = 0; i < defenses.length; i++){
+			if(defenses[i].getDefenseName().equals(DefenseClickRegion.emptyText)){
+				return "Unfilled defense: " + getColor().name() + " " + (6 - defenses[i].getDefenseNumber());
+			}
+			for(int j = i + 1; j < defenses.length; j++){
+				if(Defense.findGroup(defenses[i].getDefenseName()) == Defense.findGroup(defenses[j].getDefenseName())){
+					return "Group conflict between " + getColor().name() + " " + (6 - defenses[i].getDefenseNumber()) + " and " + (6 - defenses[j].getDefenseNumber());
+				}
+			}
+		}
+		
+		return InfoPanel.noErrorMessage;
 	}
 }
