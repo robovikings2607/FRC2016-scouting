@@ -10,4 +10,9 @@ public class Data {
 
     static boolean challenge, scale, spy, broken, absent, reach;
 
+    static String teamNumber, Comments;
+
+
+
+    //give Mike header of CSV file. (Where all the data lives)
 }

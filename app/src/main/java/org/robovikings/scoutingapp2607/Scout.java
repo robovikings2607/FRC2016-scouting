@@ -21,8 +21,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Scout extends AppCompatActivity {
 
@@ -307,6 +310,16 @@ public class Scout extends AppCompatActivity {
         Data.broken = !Data.broken;
     }
 
+    public String[] T = new String[]{"Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
+
+//    Spinner teams = (Spinner) findViewById(R.id.Spinner);
+
+    //ArrayAdapter<String> gameKindArray= new ArrayAdapter<String>(Scout.this,android.R.layout.simple_spinner_item, T);
+    //gameKindArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    //gameKindArray.setAdapter(gameKindArray);
+
+
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -357,6 +370,10 @@ public class Scout extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText teamNumber = (EditText) findViewById(R.id.teamNumbers);
+
+                Data.teamNumber = teamNumber.getText().toString();
+
                 StringBuilder s = new StringBuilder();
                 for (int count = 0; count < Data.defenses.length; count++) {
                     s.append(Data.defenses[count]).append(" ");
@@ -366,7 +383,9 @@ public class Scout extends AppCompatActivity {
                         .setAction("Towers?", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Snackbar towers = Snackbar.make(v, Data.rdMiss + " " + Data.rdlGoal + " " + Data.rdhGoal + " " + Data.blMiss + " " + Data.blLGoal + " " + Data.blhGoal + " " + Data.challenge, Snackbar.LENGTH_INDEFINITE);
+                                EditText comments = (EditText) findViewById(R.id.comments);
+                                //Data.Comments = comments.getText().toString();
+                                Snackbar towers = Snackbar.make(v, Data.rdMiss + " " + Data.rdlGoal + " " + Data.rdhGoal + " " + Data.blMiss + " " + Data.blLGoal + " " + Data.blhGoal + " " + Data.challenge + " " + Data.teamNumber, Snackbar.LENGTH_INDEFINITE);
                                 towers.show();
                             }
                         }).show();

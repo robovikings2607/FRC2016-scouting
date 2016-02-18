@@ -18,8 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/teamNumbers"
-            android:text="Team Number?"
-            android:inputType="phone"/>
+            android:hint="Team Number?"
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
 
         <Spinner
             android:layout_width="200dp"
@@ -28,37 +29,50 @@
             android:spinnerMode="dropdown"
             android:entries="@array/spinner"/>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reach Defense?"
-            android:id="@+id/checkBox"
-            android:checked="false"
-            android:onClick="reach"/>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start as Spy?"
-            android:id="@+id/checkBox2"
-            android:checked="false"
-            android:onClick="spy"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="483dp"
+            android:id="@+id/scrollView" >
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Es Broken?"
-            android:id="@+id/checkBox3"
-            android:checked="false"
-            android:onClick="broken"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Absent?"
-            android:id="@+id/checkBox4"
-            android:checked="false"
-            android:onClick="absent"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reach Defense?"
+                    android:id="@+id/checkBox"
+                    android:checked="false"
+                    android:onClick="reach"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Absent?"
+                    android:id="@+id/checkBox4"
+                    android:checked="false"
+                    android:onClick="absent"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start as Spy?"
+                    android:id="@+id/checkBox2"
+                    android:checked="false"
+                    android:onClick="spy"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Es Broken?"
+                    android:id="@+id/checkBox3"
+                    android:checked="false"
+                    android:onClick="broken"/>
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 
