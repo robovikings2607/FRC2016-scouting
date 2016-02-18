@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +13,7 @@ import javax.swing.JTextField;
 import scouting.datastorage.AllianceColor;
 import scouting.datastorage.FieldLayout;
 import scouting.datastorage.MatchData;
+import scouting.io.DataWriter;
 /**
  * This class extends {@link JFrame} and is the top-level panel in the field scouting gui.
  * It should contain a {@link ClickabeFieldMap}, a {@link SelectionArea}, and a third (as
@@ -25,12 +24,14 @@ import scouting.datastorage.MatchData;
 public class FieldScoutGUI extends JPanel implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;
+	private static final String outputFile = "fieldScoutData.txt";
 	
 	private ClickableFieldMap map;
 	private SelectionPanel selector;
 	private InfoPanel info;
 	private ClickableOuterWorks[] cowList = new ClickableOuterWorks[2];
 	private JTextField errorDisplay;
+	private DataWriter writer;
 	
 	public static void main(String[] args){
 
@@ -75,11 +76,11 @@ public class FieldScoutGUI extends JPanel implements ActionListener{
 		JButton submitinator = new JButton("Submit");
 		submitinator.addActionListener(this);
 		add(submitinator);
-		submitinator.setMnemonic(KeyEvent.VK_ENTER);
 		submitinator.setBounds(map.getWidth() + 5, selector.getHeight() + 5, selector.getWidth(), 50);
 	}
 	
 	public void initialize(){
+		
 		selector = new SelectionPanel();
 		info = new InfoPanel();
 		
@@ -145,7 +146,11 @@ public class FieldScoutGUI extends JPanel implements ActionListener{
 		FieldLayout fl = new FieldLayout(cowList[0].getData(), cowList[1].getData());
 		MatchData md = info.getData();
 		md.setLayout(fl);
-		//send data off
+		
+		writer = new DataWriter(outputFile);
+		writer.writeData(md);
+		writer.close();
+		
 		System.out.println(md.toString());
 		reset();
 	}

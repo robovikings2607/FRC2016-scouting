@@ -18,9 +18,6 @@ public class MatchData {
 	 * @param fl The layout of the field for the match
 	 */
 	public MatchData(){
-	//	teams = t;
-	//	layout = fl;
-    //	matchNumber = match;
 	}
 	
 	/**
@@ -97,6 +94,10 @@ public class MatchData {
 		return matchNumber;
 	}
 
+	/**
+	 * Basic getter method for the list of teams in this match.
+	 * @return {Red1, Red2, Red3, Blue1, Blue2, Blue3}
+	 */
 	public int[] getTeams() {
 		return teams;
 	}

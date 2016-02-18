@@ -47,6 +47,7 @@ public class DefenseClickRegion extends JPanel{
 		isSelected = false;
 		isFilled = false;
 		defenseName = emptyText;
+		repaint();
 	}
 
 	private class DefenseClickRegionListener implements MouseInputListener {

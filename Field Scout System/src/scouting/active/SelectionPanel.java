@@ -19,11 +19,12 @@ public class SelectionPanel extends JPanel implements ActionListener{
 	private int yDim = 275;
 	private static final long serialVersionUID = 1L;
 	private static final String[] defenseList = {"Cheval de Frise", "Portcullis", "Moat", "Ramparts", "Drawbridge", "Sally Port", "Rock Wall", "Rough Terrain"};
-	private static final int[] defenseMnemonics = {KeyEvent.VK_C, KeyEvent.VK_P, KeyEvent.VK_M, KeyEvent.VK_R, KeyEvent.VK_D, KeyEvent.VK_L, KeyEvent.VK_K, KeyEvent.VK_T,};
+	private static final int[] defenseMnemonics = {KeyEvent.VK_C, KeyEvent.VK_P, KeyEvent.VK_M, KeyEvent.VK_R, KeyEvent.VK_D, KeyEvent.VK_S, KeyEvent.VK_K, KeyEvent.VK_T,};
 	
 	private DefenseClickRegion callingRegion;
 	private String selectedDefense;
 	private ButtonGroup defenseSelectors;
+	private JRadioButton[] defenseButtons;
 	
 	public SelectionPanel(){
 		setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -32,6 +33,7 @@ public class SelectionPanel extends JPanel implements ActionListener{
 		
 		defenseSelectors = new ButtonGroup();
 		RadioPickerListener rpl = new RadioPickerListener();
+		defenseButtons = new JRadioButton[defenseList.length];
 		
 		for(int i = 0; i < defenseList.length; i++){
 			JRadioButton jrb = new JRadioButton(defenseList[i]);
@@ -39,19 +41,19 @@ public class SelectionPanel extends JPanel implements ActionListener{
 			jrb.addActionListener(rpl);
 			jrb.setMnemonic(defenseMnemonics[i]);
 			defenseSelectors.add(jrb);
+			defenseButtons[i] = jrb;
 			add(jrb);
 		}
 		
 		JButton submitter = new JButton("Set Defense");
 		submitter.addActionListener(this);
-		submitter.setMnemonic(KeyEvent.VK_S);
+		submitter.setMnemonic(KeyEvent.VK_ENTER);
 		add(submitter);
 	}
 
 	private class RadioPickerListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			selectedDefense = e.getActionCommand();
-			//System.out.println(e.getActionCommand() + " selected");
 		}
 	}
 	
@@ -63,6 +65,22 @@ public class SelectionPanel extends JPanel implements ActionListener{
 	public void setCallingRegion(DefenseClickRegion callingRegion) {
 		this.callingRegion = callingRegion;
 		defenseSelectors.clearSelection();
+		String callingName = callingRegion.getDefenseName();
+		if(callingName.equals(DefenseClickRegion.emptyText)){
+			selectedDefense = null;
+		} else {
+			for(int i = 0; i < defenseList.length; i++){
+				if(callingName.equals(defenseList[i])){
+					selectedDefense = defenseList[i];
+					defenseButtons[i].setSelected(true);
+				}
+			}
+		}
+	}
+	
+	public void reset(){
+		defenseSelectors.clearSelection();
+		callingRegion = null;
 		selectedDefense = null;
 	}
 
@@ -78,7 +96,7 @@ public class SelectionPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		//System.out.println("Attempted to set " + selectedDefense + " to the calling region.");
 		if(callingRegion != null && selectedDefense != null){
-			System.out.println("Set: " + callingRegion.toString());
+			//System.out.println("Set: " + callingRegion.toString());
 			callingRegion.setDefenseName(selectedDefense);
 		} else {
 			if(callingRegion == null)
