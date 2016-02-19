@@ -310,13 +310,13 @@ public class Scout extends AppCompatActivity {
         Data.broken = !Data.broken;
     }
 
-    public String[] T = new String[]{"Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
 
-//    Spinner teams = (Spinner) findViewById(R.id.Spinner);
 
-    //ArrayAdapter<String> gameKindArray= new ArrayAdapter<String>(Scout.this,android.R.layout.simple_spinner_item, T);
-    //gameKindArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    //gameKindArray.setAdapter(gameKindArray);
+    //Spinner teams = (Spinner) findViewById(R.id.Spinner);
+    String[] T = new String[]{"Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
+
+    //ArrayAdapter<String> adapter= new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, T);
+        //teams.setAdapter(adapter);
 
 
 
