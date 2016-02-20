@@ -323,7 +323,7 @@ public class Scout extends AppCompatActivity {
 
 
     public void theBurki() {
- //ViewPager viewpager = new ViewPager(this);
+ ViewPager viewpager = new ViewPager(this);
      //   setContentView(viewpager);
         Spinner spinner = (Spinner) findViewById(R.id.Spinner);
 // Create an ArrayAdapter using the string array and a default spinner layout
