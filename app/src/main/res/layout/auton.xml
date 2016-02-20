@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/Spinner"
             android:spinnerMode="dropdown"
-            android:entries="@array/spinner"/>
+            android:entries="@array/spinner"
+           />
 
 
         <ScrollView

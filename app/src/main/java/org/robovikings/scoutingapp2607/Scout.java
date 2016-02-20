@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,6 +27,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Scout extends AppCompatActivity {
 
@@ -315,8 +319,43 @@ public class Scout extends AppCompatActivity {
     //Spinner teams = (Spinner) findViewById(R.id.Spinner);
     String[] T = new String[]{"Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
 
-    //ArrayAdapter<String> adapter= new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, T);
-        //teams.setAdapter(adapter);
+
+
+
+    public void theBurki() {
+ //ViewPager viewpager = new ViewPager(this);
+     //   setContentView(viewpager);
+        Spinner spinner = (Spinner) findViewById(R.id.Spinner);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spinner, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+     //   adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+//        System.out.println(spinner.toString());
+  //      System.out.println(adapter.toString());
+        Log.i("maybe","" + R.array.spinner);
+       Log.i("maynot",""+ android.R.layout.simple_spinner_item);
+
+        spinner.setAdapter(adapter);
+
+        /*
+        List<String> sA =  new ArrayList<String>();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, sA);
+
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sItems = (Spinner) findViewById(R.id.Spinner);
+        //sItems.setAdapter(adapter);
+
+        for(int mWillsIsCool = 0 ; mWillsIsCool < T.length ; mWillsIsCool++) {
+            sA.add(T[mWillsIsCool]);
+        }
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sItems.setAdapter(adapter);
+        */
+    }
 
 
 
@@ -337,6 +376,7 @@ public class Scout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scout);
 
@@ -344,6 +384,7 @@ public class Scout extends AppCompatActivity {
 
             if(savedInstanceState != null){
                 return;
+
             }
 
             Auton auton = new Auton();
@@ -391,6 +432,8 @@ public class Scout extends AppCompatActivity {
                         }).show();
             }
         });
+
+        theBurki();
 
     }
 

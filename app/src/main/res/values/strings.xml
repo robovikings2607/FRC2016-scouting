@@ -7,7 +7,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="spinner">
-     <item name="Blue2"></item>
+        <item name="Blue1"></item>
+        <item name="Blue2"></item>
         <item name="Blue3"></item>
         <item name="Red1"></item>
         <item name="Red2"></item>
