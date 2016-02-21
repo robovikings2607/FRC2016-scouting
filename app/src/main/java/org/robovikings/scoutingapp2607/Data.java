@@ -6,11 +6,11 @@ package org.robovikings.scoutingapp2607;
 public class Data {
     static int[] defenses = new int[10];
 
-    static int blhGoal, blLGoal, blMiss, rdhGoal, rdlGoal, rdMiss, fouls, techFouls;
+    static int blhGoal, blLGoal, blMiss, rdhGoal, rdlGoal, rdMiss, ablhGoal, ablLGoal, ablMiss, ardhGoal, ardLGoal, ardMiss, fouls, techFouls, matchNumber;
 
     static boolean challenge, scale, spy, broken, absent, reach;
 
-    static String teamNumber, Comments;
+    static String teamNumber, Comments, scoutName;
 
 
 

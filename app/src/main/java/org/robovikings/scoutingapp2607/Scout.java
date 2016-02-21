@@ -65,6 +65,7 @@ public class Scout extends AppCompatActivity {
                 });
         snackbar.show();
     }
+
     public void Bluedefense3(View view){
 
         Data.defenses[2]++;
@@ -80,6 +81,7 @@ public class Scout extends AppCompatActivity {
                 });
         snackbar.show();
     }
+
     public void Bluedefense4(View view){
 
         Data.defenses[3]++;
@@ -314,48 +316,74 @@ public class Scout extends AppCompatActivity {
         Data.broken = !Data.broken;
     }
 
+    public void autonblueTower(View view){
+        AlertDialog.Builder adBuilder = new AlertDialog.Builder(
+                view.getContext());
+        adBuilder
+                .setTitle("Shot on Blue Tower")
+                .setCancelable(false)
+                .setMessage("Where did it go?")
+                .setPositiveButton("High Goal",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dlg, int blhGoal){
+                        Data.ablhGoal++;
+                        dlg.cancel();
+                    }
 
+                })
 
-    //Spinner teams = (Spinner) findViewById(R.id.Spinner);
-    String[] T = new String[]{"Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
-
-
-
-
-    public void theBurki() {
- ViewPager viewpager = new ViewPager(this);
-     //   setContentView(viewpager);
-        Spinner spinner = (Spinner) findViewById(R.id.Spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
-     //   adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-//        System.out.println(spinner.toString());
-  //      System.out.println(adapter.toString());
-        Log.i("maybe","" + R.array.spinner);
-       Log.i("maynot",""+ android.R.layout.simple_spinner_item);
-
-        spinner.setAdapter(adapter);
-
-        /*
-        List<String> sA =  new ArrayList<String>();
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, sA);
-
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner sItems = (Spinner) findViewById(R.id.Spinner);
-        //sItems.setAdapter(adapter);
-
-        for(int mWillsIsCool = 0 ; mWillsIsCool < T.length ; mWillsIsCool++) {
-            sA.add(T[mWillsIsCool]);
-        }
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sItems.setAdapter(adapter);
-        */
+                .setNegativeButton("Low Goal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int blLGoal) {
+                        Data.ablLGoal++;
+                        dialog.cancel();
+                    }
+                })
+                .setNeutralButton("Miss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int blMiss) {
+                        Data.ablMiss++;
+                        dialog.cancel();
+                    }
+                })
+        ;
+        AlertDialog alertDialog = adBuilder.create();
+        alertDialog.show();
     }
+
+    public void autonredTower(View view){
+        AlertDialog.Builder adBuilder = new AlertDialog.Builder(
+                view.getContext());
+        adBuilder
+                .setTitle("Shot on Red Tower")
+                .setCancelable(false)
+                .setMessage("Where did it go?")
+                .setPositiveButton("High Goal",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dlg, int rdhGoal){
+                        Data.ardhGoal++;
+                        dlg.cancel();
+                    }
+
+                })
+
+                .setNegativeButton("Low Goal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int blLGoal) {
+                        Data.ardLGoal++;
+                        dialog.cancel();
+                    }
+                })
+                .setNeutralButton("Miss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int blMiss) {
+                        Data.ardMiss++;
+                        dialog.cancel();
+                    }
+                })
+        ;
+        AlertDialog alertDialog = adBuilder.create();
+        alertDialog.show();
+    }
+
 
 
 
@@ -411,9 +439,13 @@ public class Scout extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText teamNumber = (EditText) findViewById(R.id.teamNumbers);
+              Data.matchNumber++;
 
-                Data.teamNumber = teamNumber.getText().toString();
+                EditText teamNumber = (EditText) findViewById(R.id.teamNumbers);
+                EditText Name = (EditText) findViewById(R.id.Name);
+
+                         Data.teamNumber = teamNumber.getText().toString();
+                        Data.scoutName = Name.getText().toString();
 
                 StringBuilder s = new StringBuilder();
                 for (int count = 0; count < Data.defenses.length; count++) {
@@ -433,7 +465,7 @@ public class Scout extends AppCompatActivity {
             }
         });
 
-        theBurki();
+
 
     }
 
