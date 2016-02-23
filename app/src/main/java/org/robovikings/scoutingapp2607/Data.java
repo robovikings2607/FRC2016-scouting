@@ -4,7 +4,8 @@ package org.robovikings.scoutingapp2607;
  * Created by Tom on 2/10/2016.
  */
 public class Data {
-    static int[] defenses = new int[10];
+    static int[] teleopdefenses = new int[10];
+    static int[] autonDefenses = new int[10];
 
     static int blhGoal, blLGoal, blMiss, rdhGoal, rdlGoal, rdMiss, ablhGoal, ablLGoal, ablMiss, ardhGoal, ardLGoal, ardMiss, fouls, techFouls, matchNumber;
 

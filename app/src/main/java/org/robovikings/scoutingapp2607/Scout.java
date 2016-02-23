@@ -13,36 +13,27 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Scout extends AppCompatActivity {
 
 
     public void Bluedefense1(View view){
 
-        Data.defenses[0]++;
+        Data.teleopdefenses[0]++;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Blue Defense 1 by 1", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[0]--;
+                        Data.teleopdefenses[0]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 1 by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -52,13 +43,13 @@ public class Scout extends AppCompatActivity {
 
     public void Bluedefense2(View view){
 
-        Data.defenses[1]++;
+        Data.teleopdefenses[1]++;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Blue Defense 2 by 1", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[1]--;
+                        Data.teleopdefenses[1]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 2 by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -68,13 +59,13 @@ public class Scout extends AppCompatActivity {
 
     public void Bluedefense3(View view){
 
-        Data.defenses[2]++;
+        Data.teleopdefenses[2]++;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Blue Defense 3 by 1", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[2]--;
+                        Data.teleopdefenses[2]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 3 by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -84,13 +75,13 @@ public class Scout extends AppCompatActivity {
 
     public void Bluedefense4(View view){
 
-        Data.defenses[3]++;
+        Data.teleopdefenses[3]++;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Blue Defense 4 by 1", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[3]--;
+                        Data.teleopdefenses[3]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 4 by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -100,13 +91,13 @@ public class Scout extends AppCompatActivity {
 
     public void Bluedefense5(View view){
 
-        Data.defenses[4]++;
+        Data.teleopdefenses[4]++;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Blue Defense 5 by 1", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[4]--;
+                        Data.teleopdefenses[4]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 5 by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -116,13 +107,13 @@ public class Scout extends AppCompatActivity {
 
     public void Reddefense1(View view){
 
-        Data.defenses[5]++;
+        Data.teleopdefenses[5]++;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Red Defense 1 by 1", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[5]--;
+                        Data.teleopdefenses[5]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 1 by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -132,13 +123,13 @@ public class Scout extends AppCompatActivity {
 
     public void Reddefense2(View view){
 
-        Data.defenses[6]++;
+        Data.teleopdefenses[6]++;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Red Defense 2 by 1", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[6]--;
+                        Data.teleopdefenses[6]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 2 by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -148,13 +139,13 @@ public class Scout extends AppCompatActivity {
 
     public void Reddefense3(View view){
 
-        Data.defenses[7]++;
+        Data.teleopdefenses[7]++;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Red Defense 3 by 1", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[7]--;
+                        Data.teleopdefenses[7]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 3 by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -164,13 +155,13 @@ public class Scout extends AppCompatActivity {
 
     public void Reddefense4(View view){
 
-        Data.defenses[8]++;
+        Data.teleopdefenses[8]++;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Red Defense 4 by 1", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[8]--;
+                        Data.teleopdefenses[8]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 4 by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -180,13 +171,173 @@ public class Scout extends AppCompatActivity {
 
     public void Reddefense5(View view){
 
-        Data.defenses[9]++;
+        Data.teleopdefenses[9]++;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Red Defense 5 by 1", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[9]--;
+                        Data.teleopdefenses[9]--;
+                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 5 by 1", Snackbar.LENGTH_SHORT);
+                        unsnackbar.show();
+                    }
+                });
+        snackbar.show();
+    }
+
+    public void AutonBluedefense1(View view){
+
+        Data.autonDefenses[0]++;
+        Snackbar snackbar = Snackbar
+                .make(view, "Increased Blue Defense 1 by 1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Undo?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Data.autonDefenses[0]--;
+                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 1 by 1", Snackbar.LENGTH_SHORT);
+                        unsnackbar.show();
+                    }
+                });
+        snackbar.show();
+    }
+
+    public void AutonBluedefense2(View view){
+
+        Data.autonDefenses[1]++;
+        Snackbar snackbar = Snackbar
+                .make(view, "Increased Blue Defense 2 by 1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Undo?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Data.autonDefenses[1]--;
+                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 2 by 1", Snackbar.LENGTH_SHORT);
+                        unsnackbar.show();
+                    }
+                });
+        snackbar.show();
+    }
+
+    public void AutonBluedefense3(View view){
+
+        Data.autonDefenses[2]++;
+        Snackbar snackbar = Snackbar
+                .make(view, "Increased Blue Defense 3 by 1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Undo?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Data.autonDefenses[2]--;
+                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 3 by 1", Snackbar.LENGTH_SHORT);
+                        unsnackbar.show();
+                    }
+                });
+        snackbar.show();
+    }
+
+    public void AutonBluedefense4(View view){
+
+        Data.autonDefenses[3]++;
+        Snackbar snackbar = Snackbar
+                .make(view, "Increased Blue Defense 4 by 1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Undo?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Data.autonDefenses[3]--;
+                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 4 by 1", Snackbar.LENGTH_SHORT);
+                        unsnackbar.show();
+                    }
+                });
+        snackbar.show();
+    }
+
+    public void AutonBluedefense5(View view){
+
+        Data.autonDefenses[4]++;
+        Snackbar snackbar = Snackbar
+                .make(view, "Increased Blue Defense 5 by 1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Undo?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Data.autonDefenses[4]--;
+                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 5 by 1", Snackbar.LENGTH_SHORT);
+                        unsnackbar.show();
+                    }
+                });
+        snackbar.show();
+    }
+
+    public void AutonReddefense1(View view){
+
+        Data.autonDefenses[5]++;
+        Snackbar snackbar = Snackbar
+                .make(view, "Increased Red Defense 1 by 1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Undo?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Data.autonDefenses[5]--;
+                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 1 by 1", Snackbar.LENGTH_SHORT);
+                        unsnackbar.show();
+                    }
+                });
+        snackbar.show();
+    }
+
+    public void AutonReddefense2(View view){
+
+        Data.autonDefenses[6]++;
+        Snackbar snackbar = Snackbar
+                .make(view, "Increased Red Defense 2 by 1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Undo?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Data.autonDefenses[6]--;
+                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 2 by 1", Snackbar.LENGTH_SHORT);
+                        unsnackbar.show();
+                    }
+                });
+        snackbar.show();
+    }
+
+    public void AutonReddefense3(View view){
+
+        Data.autonDefenses[7]++;
+        Snackbar snackbar = Snackbar
+                .make(view, "Increased Red Defense 3 by 1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Undo?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Data.autonDefenses[7]--;
+                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 3 by 1", Snackbar.LENGTH_SHORT);
+                        unsnackbar.show();
+                    }
+                });
+        snackbar.show();
+    }
+
+    public void AutonReddefense4(View view){
+
+        Data.autonDefenses[8]++;
+        Snackbar snackbar = Snackbar
+                .make(view, "Increased Red Defense 4 by 1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Undo?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Data.autonDefenses[8]--;
+                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 4 by 1", Snackbar.LENGTH_SHORT);
+                        unsnackbar.show();
+                    }
+                });
+        snackbar.show();
+    }
+
+    public void AutonReddefense5(View view){
+
+        Data.autonDefenses[9]++;
+        Snackbar snackbar = Snackbar
+                .make(view, "Increased Red Defense 5 by 1", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Undo?", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Data.autonDefenses[9]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 5 by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -284,7 +435,7 @@ public class Scout extends AppCompatActivity {
                 .setAction("Undo?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Data.defenses[1]--;
+                        Data.teleopdefenses[1]--;
                         Snackbar unsnackbar = Snackbar.make(v, "Decreased Tech Fouls by 1", Snackbar.LENGTH_SHORT);
                         unsnackbar.show();
                     }
@@ -448,8 +599,8 @@ public class Scout extends AppCompatActivity {
                         Data.scoutName = Name.getText().toString();
 
                 StringBuilder s = new StringBuilder();
-                for (int count = 0; count < Data.defenses.length; count++) {
-                    s.append(Data.defenses[count]).append(" ");
+                for (int count = 0; count < Data.teleopdefenses.length; count++) {
+                    s.append(Data.teleopdefenses[count]).append(" ");
                 }
 
                 Snackbar.make(view, s, Snackbar.LENGTH_INDEFINITE)
