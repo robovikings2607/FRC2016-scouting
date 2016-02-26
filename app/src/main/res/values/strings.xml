@@ -6,6 +6,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="match_number">0</string>
+
     <string-array name="spinnerValues">
         <item>Blue1</item>
         <item>Blue2</item>

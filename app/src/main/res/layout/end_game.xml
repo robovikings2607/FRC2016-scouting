@@ -408,15 +408,61 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/comments"
-                android:layout_column="24"
-                android:hint="Comments"
-                android:imeOptions="actionDone"/>
+                android:id="@+id/defenseComments"
+                android:layout_column="2"
+                android:hint="Did they defend? What did they do?"
+                android:layout_span="13" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/crossingComments"
+                android:layout_column="2"
+                android:hint="How well did they cross? Did they get stuck?"
+                android:layout_span="13" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/skill"
+                android:layout_column="2"
+                android:hint="How would they benefit us as an alliance partner?"
+                />
         </TableRow>
     </TableLayout>
 

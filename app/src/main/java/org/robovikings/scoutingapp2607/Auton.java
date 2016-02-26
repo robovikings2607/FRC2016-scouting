@@ -100,7 +100,7 @@ public class Auton extends Fragment{
         mListener = null;
     }
 
-    public static Fragment newInstance(int index) {
+    public static Fragment newInstance(int index) {//this one
         Auton a = new Auton();
         Bundle args = new Bundle();
         args.putInt("index", index);

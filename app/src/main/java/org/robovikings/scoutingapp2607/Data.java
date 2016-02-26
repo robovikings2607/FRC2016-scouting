@@ -11,7 +11,7 @@ public class Data {
 
     static boolean challenge, scale, spy, broken, absent, reach;
 
-    static String teamNumber, Comments, scoutName;
+    static String teamNumber, defenseComments, crossingComments, skillComments, scoutName, position;
 
 
 

@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class Scout extends AppCompatActivity {
@@ -535,6 +536,11 @@ public class Scout extends AppCompatActivity {
         alertDialog.show();
     }
 
+    public void submit(View view) {
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(Data.matchNumber);
+        Data.matchNumber++;
+    }
 
 
 
@@ -591,9 +597,20 @@ public class Scout extends AppCompatActivity {
             @Override
             public void onClick(View view) {
               Data.matchNumber++;
+Spinner bot = (Spinner)findViewById(R.id.Spinner);
+                Data.position = bot.getSelectedItem().toString();
+
 
                 EditText teamNumber = (EditText) findViewById(R.id.teamNumbers);
                 EditText Name = (EditText) findViewById(R.id.Name);
+
+                EditText comment1 = (EditText) findViewById(R.id.defenseComments);
+                EditText comment2 = (EditText) findViewById(R.id.crossingComments);
+                EditText comment3 = (EditText) findViewById(R.id.skill);
+
+//                Data.defenseComments = comment1.getText().toString();
+                Data.crossingComments = comment2.getText().toString();
+                Data.skillComments = comment3.getText().toString();
 
                          Data.teamNumber = teamNumber.getText().toString();
                         Data.scoutName = Name.getText().toString();
@@ -603,13 +620,13 @@ public class Scout extends AppCompatActivity {
                     s.append(Data.teleopdefenses[count]).append(" ");
                 }
 
-                Snackbar.make(view, s, Snackbar.LENGTH_INDEFINITE)
+                Snackbar.make(view, Data.skillComments + " " + s, Snackbar.LENGTH_INDEFINITE)
                         .setAction("Towers?", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                EditText comments = (EditText) findViewById(R.id.comments);
+
                                 //Data.Comments = comments.getText().toString();
-                                Snackbar towers = Snackbar.make(v, Data.rdMiss + " " + Data.rdlGoal + " " + Data.rdhGoal + " " + Data.blMiss + " " + Data.blLGoal + " " + Data.blhGoal + " " + Data.challenge + " " + Data.teamNumber, Snackbar.LENGTH_INDEFINITE);
+                                Snackbar towers = Snackbar.make(v,  Data.position+ " " + Data.rdMiss + " " + Data.rdlGoal + " " + Data.rdhGoal + " " + Data.blMiss + " " + Data.blLGoal + " " + Data.blhGoal + " " + Data.challenge + " " + Data.teamNumber, Snackbar.LENGTH_INDEFINITE);
                                 towers.show();
                             }
                         }).show();
