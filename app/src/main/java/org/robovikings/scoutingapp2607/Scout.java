@@ -2,6 +2,7 @@ package org.robovikings.scoutingapp2607;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -355,7 +356,7 @@ public class Scout extends AppCompatActivity {
                 .setMessage("Where did it go?")
                 .setPositiveButton("High Goal",new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dlg, int blhGoal){
-                        Data.blhGoal++;
+                        Data.High++;
                         dlg.cancel();
                     }
 
@@ -364,14 +365,14 @@ public class Scout extends AppCompatActivity {
                 .setNegativeButton("Low Goal", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int blLGoal) {
-                        Data.blLGoal++;
+                        Data.Low++;
                         dialog.cancel();
                     }
                 })
                 .setNeutralButton("Miss", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int blMiss) {
-                        Data.blMiss++;
+                        Data.Miss++;
                         dialog.cancel();
                     }
                 })
@@ -389,7 +390,7 @@ public class Scout extends AppCompatActivity {
                 .setMessage("Where did it go?")
                 .setPositiveButton("High Goal",new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dlg, int rdhGoal){
-                        Data.rdhGoal++;
+                        Data.High++;
                         dlg.cancel();
                     }
 
@@ -398,14 +399,14 @@ public class Scout extends AppCompatActivity {
                 .setNegativeButton("Low Goal", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int blLGoal) {
-                        Data.rdlGoal++;
+                        Data.Low++;
                         dialog.cancel();
                     }
                 })
                 .setNeutralButton("Miss", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int blMiss) {
-                        Data.rdMiss++;
+                        Data.Miss++;
                         dialog.cancel();
                     }
                 })
@@ -479,7 +480,7 @@ public class Scout extends AppCompatActivity {
                 .setMessage("Where did it go?")
                 .setPositiveButton("High Goal",new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dlg, int blhGoal){
-                        Data.ablhGoal++;
+                        Data.aHigh++;
                         dlg.cancel();
                     }
 
@@ -488,14 +489,14 @@ public class Scout extends AppCompatActivity {
                 .setNegativeButton("Low Goal", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int blLGoal) {
-                        Data.ablLGoal++;
+                        Data.aLow++;
                         dialog.cancel();
                     }
                 })
                 .setNeutralButton("Miss", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int blMiss) {
-                        Data.ablMiss++;
+                        Data.aMiss++;
                         dialog.cancel();
                     }
                 })
@@ -513,7 +514,7 @@ public class Scout extends AppCompatActivity {
                 .setMessage("Where did it go?")
                 .setPositiveButton("High Goal",new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dlg, int rdhGoal){
-                        Data.ardhGoal++;
+                        Data.aHigh++;
                         dlg.cancel();
                     }
 
@@ -522,14 +523,14 @@ public class Scout extends AppCompatActivity {
                 .setNegativeButton("Low Goal", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int blLGoal) {
-                        Data.ardLGoal++;
+                        Data.aLow++;
                         dialog.cancel();
                     }
                 })
                 .setNeutralButton("Miss", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int blMiss) {
-                        Data.ardMiss++;
+                        Data.aMiss++;
                         dialog.cancel();
                     }
                 })
@@ -538,10 +539,67 @@ public class Scout extends AppCompatActivity {
         alertDialog.show();
     }
 
+    public void MatchOver(View view){Data.matchOver = !Data.matchOver;}
+
     public void submit(View view) {
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(Data.matchNumber);
-        Data.matchNumber++;
+            if(Data.matchOver == true) {
+                Data.matchNumber++;
+
+                Spinner bot = (Spinner)findViewById(R.id.spinner);
+                bot.setOnItemSelectedListener(new SpinnerListener());
+
+
+
+                EditText teamNumber = (EditText) findViewById(R.id.teamNumbers);
+                EditText Name = (EditText) findViewById(R.id.Name);
+
+                EditText comment1 = (EditText) findViewById(R.id.defenseComments);
+                EditText comment2 = (EditText) findViewById(R.id.crossingComments);
+                EditText comment3 = (EditText) findViewById(R.id.skill);
+
+                Data.defenseComments = comment1.getText().toString();
+                Data.crossingComments = comment2.getText().toString();
+                Data.skillComments = comment3.getText().toString();
+
+                Data.teamNumber = teamNumber.getText().toString();
+                Data.scoutName = Name.getText().toString();
+
+
+
+          StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(Data.matchNumber).append(",");
+                stringBuilder.append(Data.teamNumber).append(",");
+                stringBuilder.append(Data.position).append(",");
+                stringBuilder.append(Data.scoutName).append(",");
+                stringBuilder.append(Data.broken).append(",");
+                stringBuilder.append(Data.absent).append(",");
+                stringBuilder.append(Data.High).append(",");
+                stringBuilder.append(Data.Miss).append(",");
+                stringBuilder.append(Data.Low).append(",");
+                stringBuilder.append(Data.teleopdefenses[5]).append(",");
+                stringBuilder.append(Data.teleopdefenses[6]).append(",");
+                stringBuilder.append(Data.teleopdefenses[7]).append(",");
+                stringBuilder.append(Data.teleopdefenses[8]).append(",");
+                stringBuilder.append(Data.teleopdefenses[9]).append(",");
+                stringBuilder.append(Data.teleopdefenses[0]).append(",");
+                stringBuilder.append(Data.teleopdefenses[1]).append(",");
+                stringBuilder.append(Data.teleopdefenses[2]).append(",");
+                stringBuilder.append(Data.teleopdefenses[3]).append(",");
+                stringBuilder.append(Data.teleopdefenses[4]).append(",");
+                stringBuilder.append(Data.aHigh).append(",");
+                stringBuilder.append(Data.aMiss).append(",");
+                stringBuilder.append(Data.aLow).append(",");
+                stringBuilder.append(Data.reach).append(",");
+                stringBuilder.append(Data.autonDefenseses()).append(",");
+                stringBuilder.append(Data.scale).append(",");
+                stringBuilder.append(Data.challenge).append(",");
+                stringBuilder.append(Data.fouls).append(",");
+                stringBuilder.append(Data.techFouls).append(",");
+                stringBuilder.append(Data.defenseComments + " " + Data.skillComments + " " + Data.crossingComments);
+                Data.CSV = stringBuilder.toString();
+           Intent submission = new Intent(this, Submit.class);
+           startActivity(submission);
+            }
     }
 
 
@@ -594,50 +652,34 @@ public class Scout extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    //   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+      //  fab.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+          //  public void onClick(View view) {
               Data.matchNumber++;
-Spinner bot = (Spinner)findViewById(R.id.Spinner);
-                Data.position = bot.getSelectedItem().toString();
 
-
-                EditText teamNumber = (EditText) findViewById(R.id.teamNumbers);
-                EditText Name = (EditText) findViewById(R.id.Name);
-
-                EditText comment1 = (EditText) findViewById(R.id.defenseComments);
-                EditText comment2 = (EditText) findViewById(R.id.crossingComments);
-                EditText comment3 = (EditText) findViewById(R.id.skill);
-
-                Data.defenseComments = comment1.getText().toString();
-                Data.crossingComments = comment2.getText().toString();
-                Data.skillComments = comment3.getText().toString();
-
-                         Data.teamNumber = teamNumber.getText().toString();
-                        Data.scoutName = Name.getText().toString();
 
                 StringBuilder s = new StringBuilder();
                 for (int count = 0; count < Data.teleopdefenses.length; count++) {
                     s.append(Data.teleopdefenses[count]).append(" ");
                 }
 
-                Snackbar.make(view, Data.skillComments + " " + s, Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Towers?", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+            //    Snackbar.make(view, Data.skillComments + " " + s, Snackbar.LENGTH_INDEFINITE)
+              //          .setAction("Towers?", new View.OnClickListener() {
+                  //          @Override
+                //            public void onClick(View v) {
 
                                 //Data.Comments = comments.getText().toString();
-                                Snackbar towers = Snackbar.make(v,  Data.position+ " " + Data.rdMiss + " " + Data.rdlGoal + " " + Data.rdhGoal + " " + Data.blMiss + " " + Data.blLGoal + " " + Data.blhGoal + " " + Data.challenge + " " + Data.teamNumber, Snackbar.LENGTH_INDEFINITE);
-                                towers.show();
+                               // Snackbar towers = Snackbar.make(v,  Data.position+ " " + Data.rdMiss + " " + Data.rdlGoal + " " + Data.rdhGoal + " " + Data.blMiss + " " + Data.blLGoal + " " + Data.blhGoal + " " + Data.challenge + " " + Data.teamNumber, Snackbar.LENGTH_INDEFINITE);
+                                //towers.show();
                             }
-                        }).show();
-            }
-        });
+             //           }).show();
+           // }
+//        });
 
 
 
-    }
+  //  }
 
 
     @Override

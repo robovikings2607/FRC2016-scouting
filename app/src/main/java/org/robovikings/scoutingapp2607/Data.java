@@ -7,11 +7,19 @@ public class Data {
     static int[] teleopdefenses = new int[10];
     static int[] autonDefenses = new int[10];
 
-    static int blhGoal, blLGoal, blMiss, rdhGoal, rdlGoal, rdMiss, ablhGoal, ablLGoal, ablMiss, ardhGoal, ardLGoal, ardMiss, fouls, techFouls, matchNumber;
+    static int autonDefenseses(){
+        int temp = 0;
+        for(int i = 0 ; i < autonDefenses.length - 1 ; i++){
+            temp += autonDefenses[i];
+        }
+        return temp;
+    }
 
-    static boolean challenge, scale, spy, broken, absent, reach, nothing;
+    static int Miss,High, Low, aHigh, aLow, aMiss, fouls, techFouls, matchNumber;
 
-    static String teamNumber, defenseComments, crossingComments, skillComments, scoutName, position;
+    static boolean challenge, scale, spy, broken, absent, reach, nothing, matchOver;
+
+    static String teamNumber, defenseComments, crossingComments, skillComments, scoutName, position, CSV;
 
 
 

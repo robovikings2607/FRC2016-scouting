@@ -474,6 +474,40 @@
                         android:hint="How would they benefit us as an alliance partner?"
                         />
                 </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Match Over?"
+                        android:id="@+id/checkBox7"
+                        android:layout_column="2"
+                        android:onClick="MatchOver"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Submit"
+                        android:id="@+id/button25"
+                        android:layout_column="2"
+                        android:onClick="submit"/>
+                </TableRow>
             </TableLayout>
         </FrameLayout>
     </ScrollView>
