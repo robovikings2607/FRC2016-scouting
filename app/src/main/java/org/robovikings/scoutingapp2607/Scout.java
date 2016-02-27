@@ -468,6 +468,8 @@ public class Scout extends AppCompatActivity {
         Data.broken = !Data.broken;
     }
 
+    public void nothing (View view) {Data.nothing = !Data.nothing;}
+
     public void autonblueTower(View view){
         AlertDialog.Builder adBuilder = new AlertDialog.Builder(
                 view.getContext());

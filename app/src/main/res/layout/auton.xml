@@ -268,7 +268,8 @@
                             android:text="Did nothing?"
                             android:id="@+id/nothing"
                             android:checked="false"
-                            android:layout_column="23" />
+                            android:layout_column="23"
+                            android:onClick="nothing"/>
 
                         </TableRow>
 

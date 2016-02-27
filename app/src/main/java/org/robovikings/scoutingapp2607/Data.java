@@ -9,7 +9,7 @@ public class Data {
 
     static int blhGoal, blLGoal, blMiss, rdhGoal, rdlGoal, rdMiss, ablhGoal, ablLGoal, ablMiss, ardhGoal, ardLGoal, ardMiss, fouls, techFouls, matchNumber;
 
-    static boolean challenge, scale, spy, broken, absent, reach;
+    static boolean challenge, scale, spy, broken, absent, reach, nothing;
 
     static String teamNumber, defenseComments, crossingComments, skillComments, scoutName, position;
 
