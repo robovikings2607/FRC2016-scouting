@@ -610,7 +610,7 @@ Spinner bot = (Spinner)findViewById(R.id.Spinner);
                 EditText comment2 = (EditText) findViewById(R.id.crossingComments);
                 EditText comment3 = (EditText) findViewById(R.id.skill);
 
-//                Data.defenseComments = comment1.getText().toString();
+                Data.defenseComments = comment1.getText().toString();
                 Data.crossingComments = comment2.getText().toString();
                 Data.skillComments = comment3.getText().toString();
 
