@@ -490,10 +490,10 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Match Over?"
+                        android:text="Finalize?"
                         android:id="@+id/checkBox7"
                         android:layout_column="2"
-                        android:onClick="MatchOver"/>
+                        android:onClick="MatchOver3"/>
                 </TableRow>
 
                 <TableRow

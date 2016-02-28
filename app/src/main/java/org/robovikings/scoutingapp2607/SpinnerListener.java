@@ -8,8 +8,8 @@ import android.widget.AdapterView;
  */
 public class SpinnerListener implements AdapterView.OnItemSelectedListener {
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        Data.position = parent.getItemAtPosition(pos).toString();
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Data.position = parent.getItemAtPosition(position).toString();
     }
 
     @Override

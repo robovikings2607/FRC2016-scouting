@@ -17,7 +17,7 @@ public class Data {
 
     static int Miss,High, Low, aHigh, aLow, aMiss, fouls, techFouls, matchNumber;
 
-    static boolean challenge, scale, spy, broken, absent, reach, nothing, matchOver;
+    static boolean challenge, scale, spy, broken, absent, reach, nothing, matchOver3, matchOver1;
 
     static String teamNumber, defenseComments, crossingComments, skillComments, scoutName, position, CSV;
 

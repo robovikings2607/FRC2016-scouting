@@ -40,7 +40,7 @@
         <EditText
             android:layout_width="259dp"
             android:layout_height="58dp"
-            android:inputType="textPersonName"
+
             android:ems="10"
             android:id="@+id/Name"
             android:hint="Scout Name"/>
@@ -271,7 +271,18 @@
                             android:layout_column="23"
                             android:onClick="nothing"/>
 
-                        </TableRow>
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Finalize?"
+                            android:id="@+id/MatchOver1"
+                            android:checked="false"
+                            android:layout_column="0"
+                            android:onClick="MatchOver1"
+                            android:layout_gravity="left|bottom" />
+
+
+                    </TableRow>
 
                 </TableLayout>
             </LinearLayout>

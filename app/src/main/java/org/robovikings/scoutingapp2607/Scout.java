@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -539,30 +540,41 @@ public class Scout extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void MatchOver(View view){Data.matchOver = !Data.matchOver;}
+    public void MatchOver1(View view){Data.matchOver1 = !Data.matchOver1;
+
+        Spinner bot = (Spinner)findViewById(R.id.spinner);
+        bot.setOnItemSelectedListener(new SpinnerListener());
+Data.position = bot.getSelectedItem().toString();
+        Log.w("/do it ",Data.position);
+        EditText teamNumber = (EditText) findViewById(R.id.teamNumbers);
+        EditText Name = (EditText) findViewById(R.id.Name);
+       Data.teamNumber = teamNumber.getText().toString();
+              Data.scoutName = Name.getText().toString();}
+
+    public void MatchOver3(View view){Data.matchOver3 = !Data.matchOver3;
+
+        EditText comment1 = (EditText) findViewById(R.id.defenseComments);
+        EditText comment2 = (EditText) findViewById(R.id.crossingComments);
+        EditText comment3 = (EditText) findViewById(R.id.skill);
+
+        Data.defenseComments = comment1.getText().toString();
+        Data.crossingComments = comment2.getText().toString();
+        Data.skillComments = comment3.getText().toString();
+
+
+
+    }
 
     public void submit(View view) {
-            if(Data.matchOver == true) {
+            if(Data.matchOver3 || Data.matchOver1 == true) {
                 Data.matchNumber++;
 
-                Spinner bot = (Spinner)findViewById(R.id.spinner);
-                bot.setOnItemSelectedListener(new SpinnerListener());
+                //Spinner bot = (Spinner)findViewById(R.id.spinner);
+              //  bot.setOnItemSelectedListener(new SpinnerListener());
 
 
 
-                EditText teamNumber = (EditText) findViewById(R.id.teamNumbers);
-                EditText Name = (EditText) findViewById(R.id.Name);
 
-                EditText comment1 = (EditText) findViewById(R.id.defenseComments);
-                EditText comment2 = (EditText) findViewById(R.id.crossingComments);
-                EditText comment3 = (EditText) findViewById(R.id.skill);
-
-                Data.defenseComments = comment1.getText().toString();
-                Data.crossingComments = comment2.getText().toString();
-                Data.skillComments = comment3.getText().toString();
-
-                Data.teamNumber = teamNumber.getText().toString();
-                Data.scoutName = Name.getText().toString();
 
 
 
@@ -652,17 +664,14 @@ public class Scout extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-    //   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-      //  fab.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-          //  public void onClick(View view) {
-              Data.matchNumber++;
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
 
-                StringBuilder s = new StringBuilder();
-                for (int count = 0; count < Data.teleopdefenses.length; count++) {
-                    s.append(Data.teleopdefenses[count]).append(" ");
-                }
 
             //    Snackbar.make(view, Data.skillComments + " " + s, Snackbar.LENGTH_INDEFINITE)
               //          .setAction("Towers?", new View.OnClickListener() {
@@ -672,7 +681,7 @@ public class Scout extends AppCompatActivity {
                                 //Data.Comments = comments.getText().toString();
                                // Snackbar towers = Snackbar.make(v,  Data.position+ " " + Data.rdMiss + " " + Data.rdlGoal + " " + Data.rdhGoal + " " + Data.blMiss + " " + Data.blLGoal + " " + Data.blhGoal + " " + Data.challenge + " " + Data.teamNumber, Snackbar.LENGTH_INDEFINITE);
                                 //towers.show();
-                            }
+    }
              //           }).show();
            // }
 //        });
