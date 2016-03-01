@@ -15,7 +15,7 @@ public class Data {
         return temp;
     }
 
-    static int Miss,High, Low, aHigh, aLow, aMiss, fouls, techFouls, matchNumber;
+    static int highMiss, lowMiss, High, Low, aHigh, aLow, aLowMiss, aHighMiss, fouls, techFouls, matchNumber;
 
     static boolean challenge, scale, spy, broken, absent, reach, nothing, matchOver3, matchOver1;
 

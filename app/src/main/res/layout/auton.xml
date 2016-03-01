@@ -55,7 +55,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="582dp"
+                android:layout_height="wrap_content"
                 android:weightSum="1">
 
 
@@ -265,21 +265,21 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Did nothing?"
-                            android:id="@+id/nothing"
-                            android:checked="false"
-                            android:layout_column="23"
-                            android:onClick="nothing"/>
-
-                        <CheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:text="Finalize?"
                             android:id="@+id/MatchOver1"
                             android:checked="false"
                             android:layout_column="0"
                             android:onClick="MatchOver1"
                             android:layout_gravity="left|bottom" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Did nothing?"
+                            android:id="@+id/nothing"
+                            android:checked="false"
+                            android:layout_column="23"
+                            android:onClick="nothing"/>
 
 
                     </TableRow>
