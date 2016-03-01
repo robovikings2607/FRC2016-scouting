@@ -79,7 +79,6 @@ public class ClickableOuterWorks {
 				}
 			}
 		}
-		
 		return InfoPanel.noErrorMessage;
 	}
 }

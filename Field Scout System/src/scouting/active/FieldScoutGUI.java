@@ -35,7 +35,7 @@ public class FieldScoutGUI extends JPanel implements ActionListener{
 	
 	public static void main(String[] args){
 
-		JFrame frame = new JFrame("Field Scouting System v1.7");
+		JFrame frame = new JFrame("Field Scouting System v1.8");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		FieldScoutGUI fsg = new FieldScoutGUI();

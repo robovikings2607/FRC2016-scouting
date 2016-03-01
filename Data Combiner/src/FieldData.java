@@ -105,7 +105,7 @@ public class FieldData extends HashMap<Integer, String[]>{
 		}
 		return maxMatch;
 	}
-	
+		
 	/**
 	 * Returns all matches stored in the FieldData, followed by information
 	 * about which matches are missing data.
