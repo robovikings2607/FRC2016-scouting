@@ -32,7 +32,7 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Blue Defense 1"
+                android:text="Blue Low Bar"
                 android:id="@+id/button0"
                 android:layout_gravity="left|center_vertical"
                 android:layout_column="10"
@@ -42,7 +42,7 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Red Defense 1"
+                android:text="Red Low Bar"
                 android:id="@+id/button9"
                 android:layout_column="33"
                 android:onClick="Reddefense1"/>

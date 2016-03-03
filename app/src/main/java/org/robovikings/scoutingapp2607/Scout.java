@@ -190,161 +190,93 @@ public class Scout extends AppCompatActivity {
 
     public void AutonBluedefense1(View view){
 
-        Data.autonDefenses[0]++;
+        Data.autonDefenses = 5;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Blue Defense 1 by 1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Undo?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Data.autonDefenses[0]--;
-                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 1 by 1", Snackbar.LENGTH_SHORT);
-                        unsnackbar.show();
-                    }
-                });
+                .make(view, "Increased Blue Defense 1 by 1", Snackbar.LENGTH_INDEFINITE);
+
         snackbar.show();
     }
 
     public void AutonBluedefense2(View view){
 
-        Data.autonDefenses[1]++;
+        Data.autonDefenses = 6;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Blue Defense 2 by 1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Undo?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Data.autonDefenses[1]--;
-                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 2 by 1", Snackbar.LENGTH_SHORT);
-                        unsnackbar.show();
-                    }
-                });
+                .make(view, "Increased Blue Defense 2 by 1", Snackbar.LENGTH_INDEFINITE);
+
         snackbar.show();
     }
 
     public void AutonBluedefense3(View view){
 
-        Data.autonDefenses[2]++;
+        Data.autonDefenses = 7;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Blue Defense 3 by 1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Undo?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Data.autonDefenses[2]--;
-                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 3 by 1", Snackbar.LENGTH_SHORT);
-                        unsnackbar.show();
-                    }
-                });
+                .make(view, "Increased Blue Defense 3 by 1", Snackbar.LENGTH_INDEFINITE);
+
         snackbar.show();
     }
 
     public void AutonBluedefense4(View view){
 
-        Data.autonDefenses[3]++;
+        Data.autonDefenses = 8;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Blue Defense 4 by 1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Undo?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Data.autonDefenses[3]--;
-                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 4 by 1", Snackbar.LENGTH_SHORT);
-                        unsnackbar.show();
-                    }
-                });
+                .make(view, "Increased Blue Defense 4 by 1", Snackbar.LENGTH_INDEFINITE);
+
         snackbar.show();
     }
 
     public void AutonBluedefense5(View view){
 
-        Data.autonDefenses[4]++;
+        Data.autonDefenses = 9;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Blue Defense 5 by 1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Undo?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Data.autonDefenses[4]--;
-                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Blue Defense 5 by 1", Snackbar.LENGTH_SHORT);
-                        unsnackbar.show();
-                    }
-                });
+                .make(view, "Increased Blue Defense 5 by 1", Snackbar.LENGTH_INDEFINITE);
+
         snackbar.show();
     }
 
     public void AutonReddefense1(View view){
 
-        Data.autonDefenses[5]++;
+        Data.autonDefenses = 0;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Red Defense 1 by 1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Undo?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Data.autonDefenses[5]--;
-                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 1 by 1", Snackbar.LENGTH_SHORT);
-                        unsnackbar.show();
-                    }
-                });
+                .make(view, "Increased Red Defense 1 by 1", Snackbar.LENGTH_INDEFINITE);
+
         snackbar.show();
     }
 
     public void AutonReddefense2(View view){
 
-        Data.autonDefenses[6]++;
+        Data.autonDefenses = 1;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Red Defense 2 by 1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Undo?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Data.autonDefenses[6]--;
-                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 2 by 1", Snackbar.LENGTH_SHORT);
-                        unsnackbar.show();
-                    }
-                });
+                .make(view, "Increased Red Defense 2 by 1", Snackbar.LENGTH_INDEFINITE);
+
         snackbar.show();
     }
 
     public void AutonReddefense3(View view){
 
-        Data.autonDefenses[7]++;
+        Data.autonDefenses = 2;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Red Defense 3 by 1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Undo?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Data.autonDefenses[7]--;
-                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 3 by 1", Snackbar.LENGTH_SHORT);
-                        unsnackbar.show();
-                    }
-                });
+                .make(view, "Increased Red Defense 3 by 1", Snackbar.LENGTH_INDEFINITE);
+
         snackbar.show();
     }
 
     public void AutonReddefense4(View view){
 
-        Data.autonDefenses[8]++;
+        Data.autonDefenses = 3;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Red Defense 4 by 1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Undo?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Data.autonDefenses[8]--;
-                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 4 by 1", Snackbar.LENGTH_SHORT);
-                        unsnackbar.show();
-                    }
-                });
+                .make(view, "Increased Red Defense 4 by 1", Snackbar.LENGTH_INDEFINITE);
+
         snackbar.show();
     }
 
     public void AutonReddefense5(View view){
 
-        Data.autonDefenses[9]++;
+        Data.autonDefenses = 4;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Red Defense 5 by 1", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Undo?", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Data.autonDefenses[9]--;
-                        Snackbar unsnackbar = Snackbar.make(v, "Decreased Red Defense 5 by 1", Snackbar.LENGTH_SHORT);
-                        unsnackbar.show();
-                    }
-                });
+                .make(view, "Increased Red Defense 5 by 1", Snackbar.LENGTH_INDEFINITE);
+
+
+
         snackbar.show();
     }
 
@@ -672,7 +604,7 @@ Data.position = bot.getSelectedItem().toString();
                 stringBuilder.append(Data.aLow).append(",");
                 stringBuilder.append(Data.aLowMiss).append(",");
                 stringBuilder.append(Data.reach).append(",");
-                stringBuilder.append(Data.autonDefenseses()).append(",");
+                stringBuilder.append(Data.autonDefenses).append(",");
                 stringBuilder.append(Data.scale).append(",");
                 stringBuilder.append(Data.challenge).append(",");
                 stringBuilder.append(Data.fouls).append(",");

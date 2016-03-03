@@ -5,15 +5,9 @@ package org.robovikings.scoutingapp2607;
  */
 public class Data {
     static int[] teleopdefenses = new int[10];
-    static int[] autonDefenses = new int[10];//replace with ints 0-9 each representing one defense
+    static int autonDefenses;//replace with ints 0-9 each representing one defense
 
-    static int autonDefenseses(){
-        int temp = 0;
-        for(int i = 0 ; i < autonDefenses.length - 1 ; i++){
-            temp += autonDefenses[i];
-        }
-        return temp;
-    }
+
 
     static int highMiss, lowMiss, High, Low, aHigh, aLow, aLowMiss, aHighMiss, fouls, techFouls, matchNumber;
 
