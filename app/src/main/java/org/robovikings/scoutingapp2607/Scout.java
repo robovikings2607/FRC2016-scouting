@@ -681,6 +681,10 @@ Data.position = bot.getSelectedItem().toString();
                 Data.CSV = stringBuilder.toString();
            Intent submission = new Intent(this, Submit.class);
            startActivity(submission);
+                this.finish();
+            } else{
+                Snackbar.make(view, "You need to finalize your data", Snackbar.LENGTH_LONG)
+                .show();
             }
     }
 

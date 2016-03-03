@@ -104,7 +104,7 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Challenge?"
+                        android:text="Challenge?(on tower ramp)"
                         android:id="@+id/checkBox6"
                         android:layout_gravity="left|center_vertical"
                         android:layout_column="2"
@@ -452,7 +452,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/crossingComments"
                         android:layout_column="2"
-                        android:hint="How well did they cross? Did they get stuck?"
+                        android:hint="How well did they cross? Did they get stuck? Which defenses were hard to cross?"
                         android:layout_span="13" />
                 </TableRow>
 
@@ -491,9 +491,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Finalize?"
-                        android:id="@+id/checkBox7"
+                        android:id="@+id/egFinalize"
                         android:layout_column="2"
-                        android:onClick="MatchOver3"/>
+                        android:onClick="MatchOver3"
+                        android:checked="false"/>
                 </TableRow>
 
                 <TableRow

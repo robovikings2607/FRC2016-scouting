@@ -5,7 +5,7 @@ package org.robovikings.scoutingapp2607;
  */
 public class Data {
     static int[] teleopdefenses = new int[10];
-    static int[] autonDefenses = new int[10];
+    static int[] autonDefenses = new int[10];//replace with ints 0-9 each representing one defense
 
     static int autonDefenseses(){
         int temp = 0;
