@@ -22,14 +22,8 @@ public class CompleteDataWriter {
 	public CompleteDataWriter(File outputFile, FieldData fieldScoutData){
 		this.fieldScoutData = fieldScoutData;
 		try {
-			boolean existence = outputFile.exists();
-			writer = new PrintWriter(new FileOutputStream(outputFile, true));
-			if(!existence){
-				writer.println(outputCSVHeader);
-				System.out.println("Created new file");
-			} else {
-				System.out.println("Appending to old file.");
-			}
+			writer = new PrintWriter(new FileOutputStream(outputFile, false));
+			writer.write(outputCSVHeader + "\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -49,6 +43,7 @@ public class CompleteDataWriter {
 		try{
 			BufferedReader read = new BufferedReader(new FileReader(robotScoutCSV));
 			String line = read.readLine();
+			System.out.println("Reading from " + robotScoutCSV.getName());
 			while((line = read.readLine()) != null){
 				writeLine(line);
 			}
@@ -76,7 +71,6 @@ public class CompleteDataWriter {
 		writer.write(data[dataIndex("MatchNumber")] + ",");
 		writer.write(data[dataIndex("ColorAndNumber")] + ",");
 		writer.write(data[dataIndex("ScoutName")] + ",");
-		writer.write(data[dataIndex("MatchNumber")] + ",");
 		booleanWrite(data[dataIndex("EsBrokien")]);
 		booleanWrite(data[dataIndex("Absent")]);
 		
@@ -89,9 +83,13 @@ public class CompleteDataWriter {
 		writer.write(data[dataIndex("AutonHighHit")] + ",");
 		writer.write(data[dataIndex("AutonHighMiss")] + ",");
 		writer.write(data[dataIndex("AutonLowHit")] + ",");
-		writer.write(data[dataIndex("AutonlowMiss")] + ",");
+		writer.write(data[dataIndex("AutonLowMiss")] + ",");
 		booleanWrite(data[dataIndex("AutonDefenseReached")]);
-		writer.write(data[dataIndex("AutonDefenseCrossed")] + ",");
+		
+		int matchNumber = Integer.parseInt(data[dataIndex("MatchNumber")]);
+		String[] match = fieldScoutData.get(matchNumber);
+		
+		writer.write(match[Integer.parseInt(data[dataIndex("AutonDefenseCrossed")]) + 11] + ",");
 		booleanWrite(data[dataIndex("TowerScaled")]);
 		booleanWrite(data[dataIndex("TowerChallenged")]);
 		writer.write(data[dataIndex("Fouls")] + ",");
@@ -103,8 +101,7 @@ public class CompleteDataWriter {
 		} else {
 			color = "BLUE";
 		}
-		int matchNumber = Integer.parseInt(data[dataIndex("MatchNumber")]);
-		String[] match = fieldScoutData.get(matchNumber);
+
 		booleanWrite(match[10].equals(color) || match[10].equals("BOTH"));
 		booleanWrite(match[9].equals(color) || match[9].equals("BOTH"));
 		
@@ -115,13 +112,13 @@ public class CompleteDataWriter {
 			booleanWrite(!redWin);
 		}
 		
-		writer.write(data[dataIndex("Comments")]);
+		writer.write(data[dataIndex("Comments")] + "\n");
 	}
 	//HighGoalHit,HighGoalMiss,LowGoalHit,LowGoalMiss,AutonHighHit,AutonHighMiss,AutonLowHit,AutonlowMiss,
 	//AutonDefenseReached,AutonDefenseCrossed,TowerScaled,TowerChallenged,Fouls,TechFouls,Breach,Capture,Win,Comments
 	
 	private void booleanWrite(String bool) {
-		if(bool.equals("true")){
+		if(bool.toLowerCase().equals("true")){
 			writer.write("1,");
 		} else {
 			writer.write("0,");
@@ -171,14 +168,14 @@ public class CompleteDataWriter {
 			for(int j = 0; j < 10; j++){
 				if(fieldDat[j + fieldDataStart].equals(defenses[i])){
 					retVal[i] += Integer.parseInt(splitRobotScoutData[robotDataStart + j]);
+					if (j < 5 && retVal[i] == 0){
+						retVal[i+9] = 1;
+					}
+					break;
 				}
 			}
 		}
-		for (int i = 0; i < 9; i++){
-			if (retVal[i] == 0){
-				retVal[i+9] = 1;
-			}
-		}
+
 		String s = "";
 		for(int i = 0; i < retVal.length; i++){
 			s += retVal[i] + ",";
@@ -208,17 +205,25 @@ public class CompleteDataWriter {
 	
 	private String detectWorkableError(String[] robotMatch){
 		String error = "";
-		if(robotMatch.length < robotScoutCSVHeader.length){
+		if(robotMatch.length < robotScoutCSVHeader.length - 1){
 			error += "Missing full data; ";
 		}
 		
 		String[] fieldData;
-		if((fieldData = fieldScoutData.get(Integer.parseInt(robotMatch[dataIndex("matchNumber")]))) == null){
+		if((fieldData = fieldScoutData.get(Integer.parseInt(robotMatch[dataIndex("MatchNumber")]))) == null){
 			error += "No match data; ";
 		} else {
-			
-			for(int i = 0; i < 6; i++){
-				
+			boolean isInMatch = false;
+			try{
+				int teamNumber = Integer.parseInt(robotMatch[1]);
+				for(int i = 0; i < 6; i++){
+					if(Integer.parseInt(fieldData[i + 1]) == teamNumber){
+						isInMatch = true;
+					}
+				}
+			} catch (NumberFormatException e){}
+			if (!isInMatch){
+				error += "Team not in stated match; ";
 			}
 		}
 		if(error.equals("")){
@@ -228,7 +233,7 @@ public class CompleteDataWriter {
 		}
 	}
 	
-	protected void finalize(){
+	public void closeWriter(){
 		writer.close();
 	}
 }

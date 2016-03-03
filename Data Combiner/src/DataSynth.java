@@ -5,7 +5,7 @@ public class DataSynth {
 	
 	private static final String outputFileName = "completeData.csv";
 	private static final String inputFieldScoutFileName = "fieldScoutData.csv";
-	private static final String inputRobotScoutFileName[] = {};
+	private static final String inputRobotScoutFileName[] = {"robotScoutCSVTest.csv"};
 	
 	public static void main(String[] args){
 		FieldData fd = new FieldData(new File(inputFieldScoutFileName));
@@ -16,5 +16,7 @@ public class DataSynth {
 		for(int i = 0; i < inputRobotScoutFileName.length; i++){
 			dataOut.write(new File(inputRobotScoutFileName[i]));
 		}
+		
+		dataOut.closeWriter();
 	}
 }

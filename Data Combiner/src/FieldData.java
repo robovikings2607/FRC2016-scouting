@@ -69,9 +69,9 @@ public class FieldData extends HashMap<Integer, String[]>{
 	 * for which no data is stored
 	 */
 	public int[] checkForMissingData(){
-		int[] missing = new int[size()];
 		
 		int maxMatch = getMaxMatchNumber();
+		int[] missing = new int[maxMatch];
 		int ind = 0;
 		for(int i = 1; i <= maxMatch; i++){
 			if(!containsKey(i)){
