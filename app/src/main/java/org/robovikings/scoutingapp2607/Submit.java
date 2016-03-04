@@ -40,7 +40,7 @@ public class Submit extends AppCompatActivity {
 
         try {
             file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) ,
-                   "ITWORKED.CSV");
+                   Data.position+".CSV");
 
             boolean existence = file.exists();
             writer = new PrintWriter(new FileOutputStream(file , true));

@@ -192,7 +192,7 @@ public class Scout extends AppCompatActivity {
 
         Data.autonDefenses = 5;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Blue Defense 1 by 1", Snackbar.LENGTH_INDEFINITE);
+                .make(view, "Set Crossing to Blue LowBar", Snackbar.LENGTH_INDEFINITE);
 //EditText worth = (EditText).findViewById
         snackbar.show();
     }
@@ -201,7 +201,7 @@ public class Scout extends AppCompatActivity {
 
         Data.autonDefenses = 6;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Blue Defense 2 by 1", Snackbar.LENGTH_INDEFINITE);
+                .make(view, "Set Crossing to Blue 2", Snackbar.LENGTH_INDEFINITE);
 
         snackbar.show();
     }
@@ -210,7 +210,7 @@ public class Scout extends AppCompatActivity {
 
         Data.autonDefenses = 7;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Blue Defense 3 by 1", Snackbar.LENGTH_INDEFINITE);
+                .make(view, "Set Crossing to Blue 3", Snackbar.LENGTH_INDEFINITE);
 
         snackbar.show();
     }
@@ -219,7 +219,7 @@ public class Scout extends AppCompatActivity {
 
         Data.autonDefenses = 8;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Blue Defense 4 by 1", Snackbar.LENGTH_INDEFINITE);
+                .make(view, "Set Crossing to Blue 4", Snackbar.LENGTH_INDEFINITE);
 
         snackbar.show();
     }
@@ -228,7 +228,7 @@ public class Scout extends AppCompatActivity {
 
         Data.autonDefenses = 9;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Blue Defense 5 by 1", Snackbar.LENGTH_INDEFINITE);
+                .make(view, "Set Crossing to Blue 5", Snackbar.LENGTH_INDEFINITE);
 
         snackbar.show();
     }
@@ -237,7 +237,7 @@ public class Scout extends AppCompatActivity {
 
         Data.autonDefenses = 0;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Red Defense 1 by 1", Snackbar.LENGTH_INDEFINITE);
+                .make(view, "Set Crossing to Red LowBar", Snackbar.LENGTH_INDEFINITE);
 
         snackbar.show();
     }
@@ -246,7 +246,7 @@ public class Scout extends AppCompatActivity {
 
         Data.autonDefenses = 1;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Red Defense 2 by 1", Snackbar.LENGTH_INDEFINITE);
+                .make(view, "Set Crossing to Red 2", Snackbar.LENGTH_INDEFINITE);
 
         snackbar.show();
     }
@@ -255,7 +255,7 @@ public class Scout extends AppCompatActivity {
 
         Data.autonDefenses = 2;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Red Defense 3 by 1", Snackbar.LENGTH_INDEFINITE);
+                .make(view, "Set Crossing to Red 3", Snackbar.LENGTH_INDEFINITE);
 
         snackbar.show();
     }
@@ -264,7 +264,7 @@ public class Scout extends AppCompatActivity {
 
         Data.autonDefenses = 3;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Red Defense 4 by 1", Snackbar.LENGTH_INDEFINITE);
+                .make(view, "Set Crossing to Red 4", Snackbar.LENGTH_INDEFINITE);
 
         snackbar.show();
     }
@@ -273,7 +273,7 @@ public class Scout extends AppCompatActivity {
 
         Data.autonDefenses = 4;
         Snackbar snackbar = Snackbar
-                .make(view, "Increased Red Defense 5 by 1", Snackbar.LENGTH_INDEFINITE);
+                .make(view, "Set Crossing to Red 5", Snackbar.LENGTH_INDEFINITE);
 
 
 
