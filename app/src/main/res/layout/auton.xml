@@ -76,6 +76,8 @@
                             android:layout_column="0"
                             android:onClick="autonblueTower"/>
 
+
+
                         <Button
                             style="?android:attr/buttonStyleSmall"
                             android:layout_width="wrap_content"

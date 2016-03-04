@@ -3,6 +3,7 @@ package org.robovikings.scoutingapp2607;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -33,19 +34,28 @@ public class Submit extends AppCompatActivity {
     }
 
     public void sendData(View view){
-        PrintWriter writer=null;
+        PrintWriter writer;
+        File file;
+
 
         try {
-            FileOutputStream os = openFileOutput("Data.csv", Context.MODE_PRIVATE);
-            writer=new PrintWriter(os);
+            file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) ,
+                   "ITWORKED.CSV");
+
+            boolean existence = file.exists();
+            writer = new PrintWriter(new FileOutputStream(file , true));
+            if(!existence){
+                writer.println("MatchNumber,TeamNumber,ColorAndNumber,ScoutName,EsBrokien,Absent,HighGoalHit,HighGoalMiss,LowGoalHit,LowGoalMiss,RD1Crossings,RD2Crossings,RD3Crossings,RD4Crossings,RD5Crossings,BD1Crossings,BD2Crossings,BD3Crossings,BD4Crossings,BD5Crossings,AutonHighHit,AutonHighMiss,AutonLowHit,AutonLowMiss,AutonDefenseReached,AutonDefenseCrossed,TowerScaled,TowerChallenged,Fouls,TechFouls,Comments");
+            }
+
+            writer.println(Data.CSV);
+
+            writer.flush();
+            writer.close();
+
         } catch (Exception e) {
             // log exception
         }
-        writer.print(Data.CSV);
-
-
-        writer.flush();
-        writer.close();
 //String home = Submit.this.getFilesDir().getAbsolutePath();
    //     Snackbar.make(view , home , Snackbar.LENGTH_INDEFINITE).show();
 

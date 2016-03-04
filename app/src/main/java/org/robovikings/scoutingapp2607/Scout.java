@@ -193,7 +193,7 @@ public class Scout extends AppCompatActivity {
         Data.autonDefenses = 5;
         Snackbar snackbar = Snackbar
                 .make(view, "Increased Blue Defense 1 by 1", Snackbar.LENGTH_INDEFINITE);
-
+//EditText worth = (EditText).findViewById
         snackbar.show();
     }
 
@@ -571,6 +571,8 @@ Data.position = bot.getSelectedItem().toString();
 
     }
 
+
+
     public void submit(View view) {
             if(Data.matchOver3 || Data.matchOver1 == true) {
                 Data.matchNumber++;
@@ -670,13 +672,7 @@ Data.position = bot.getSelectedItem().toString();
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
 
 
             //    Snackbar.make(view, Data.skillComments + " " + s, Snackbar.LENGTH_INDEFINITE)
