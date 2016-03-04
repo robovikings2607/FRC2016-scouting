@@ -71,21 +71,20 @@
                             style="?android:attr/buttonStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Blue Tower"
+                            android:text="Tower"
                             android:id="@+id/button4"
                             android:layout_column="0"
                             android:onClick="autonblueTower"/>
-
-
 
                         <Button
                             style="?android:attr/buttonStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Red Tower"
-                            android:id="@+id/button5"
-                            android:layout_column="23"
-                            android:onClick="autonredTower" />
+                            android:text="Defense 3"
+                            android:id="@+id/button17"
+                            android:onClick="AutonBluedefense3"
+                            android:layout_column="23" />
+
                     </TableRow>
 
                     <TableRow
@@ -96,7 +95,7 @@
                             style="?android:attr/buttonStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Blue LowBar"
+                            android:text="LowBar"
                             android:id="@+id/button15"
                             android:onClick="AutonBluedefense1"
                             />
@@ -105,11 +104,12 @@
                             style="?android:attr/buttonStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Red Lowbar"
-                            android:id="@+id/button20"
+                            android:text="Defense 4"
+                            android:id="@+id/button18"
                             android:layout_column="23"
-                            android:onClick="AutonReddefense1"
+                            android:onClick="AutonBluedefense4"
                             />
+
                     </TableRow>
 
                     <TableRow
@@ -120,7 +120,7 @@
                             style="?android:attr/buttonStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Blue 2"
+                            android:text="Defense 2"
                             android:id="@+id/button16"
                             android:layout_column="0"
                             android:onClick="AutonBluedefense2"
@@ -130,86 +130,28 @@
                             style="?android:attr/buttonStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Red 2"
-                            android:id="@+id/button21"
-                            android:layout_column="23"
-                            android:onClick="AutonReddefense2"
-                            />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <Button
-                            style="?android:attr/buttonStyleSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Blue 3"
-                            android:id="@+id/button17"
-                            android:onClick="AutonBluedefense3"
-                            />
-
-                        <Button
-                            style="?android:attr/buttonStyleSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Red 3"
-                            android:id="@+id/button22"
-                            android:layout_column="23"
-                            android:onClick="AutonReddefense3"
-                            />
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <Button
-                            style="?android:attr/buttonStyleSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Blue 4"
-                            android:id="@+id/button18"
-                            android:layout_column="0"
-                            android:onClick="AutonBluedefense4"
-                            />
-
-                        <Button
-                            style="?android:attr/buttonStyleSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Red 4"
-                            android:id="@+id/button23"
-                            android:layout_column="23"
-                            android:onClick="AutonReddefense4"
-                            />
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <Button
-                            style="?android:attr/buttonStyleSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Blue 5"
+                            android:text="Defense 5"
                             android:id="@+id/button19"
                             android:onClick="AutonBluedefense5"
-                            />
+                            android:layout_column="23" />
 
-                        <Button
-                            style="?android:attr/buttonStyleSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Red 5"
-                            android:id="@+id/button24"
-                            android:layout_column="23"
-                            android:onClick="AutonReddefense5"
-                            />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
                     </TableRow>
 

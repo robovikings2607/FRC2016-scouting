@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 public class Scout extends AppCompatActivity {
 
+    private int autonBlueCross = -1 , autonRedCross = -1;
 
     public void Bluedefense1(View view){
 
@@ -190,16 +191,20 @@ public class Scout extends AppCompatActivity {
 
     public void AutonBluedefense1(View view){
 
-        Data.autonDefenses = 5;
+//        Data.autonDefenses = 5;
+        autonBlueCross = 5;
+        autonRedCross = 0;
         Snackbar snackbar = Snackbar
                 .make(view, "Set Crossing to Blue LowBar", Snackbar.LENGTH_INDEFINITE);
-//EditText worth = (EditText).findViewById
+        //EditText worth = (EditText).findViewById
         snackbar.show();
     }
 
     public void AutonBluedefense2(View view){
 
-        Data.autonDefenses = 6;
+//        Data.autonDefenses = 6;
+        autonBlueCross = 6;
+        autonRedCross = 1;
         Snackbar snackbar = Snackbar
                 .make(view, "Set Crossing to Blue 2", Snackbar.LENGTH_INDEFINITE);
 
@@ -208,7 +213,9 @@ public class Scout extends AppCompatActivity {
 
     public void AutonBluedefense3(View view){
 
-        Data.autonDefenses = 7;
+//        Data.autonDefenses = 7;
+        autonBlueCross = 7;
+        autonRedCross = 2;
         Snackbar snackbar = Snackbar
                 .make(view, "Set Crossing to Blue 3", Snackbar.LENGTH_INDEFINITE);
 
@@ -217,7 +224,9 @@ public class Scout extends AppCompatActivity {
 
     public void AutonBluedefense4(View view){
 
-        Data.autonDefenses = 8;
+//        Data.autonDefenses = 8;
+        autonBlueCross = 8;
+        autonRedCross = 3;
         Snackbar snackbar = Snackbar
                 .make(view, "Set Crossing to Blue 4", Snackbar.LENGTH_INDEFINITE);
 
@@ -226,7 +235,9 @@ public class Scout extends AppCompatActivity {
 
     public void AutonBluedefense5(View view){
 
-        Data.autonDefenses = 9;
+//        Data.autonDefenses = 9;
+        autonBlueCross = 9;
+        autonRedCross = 4;
         Snackbar snackbar = Snackbar
                 .make(view, "Set Crossing to Blue 5", Snackbar.LENGTH_INDEFINITE);
 
@@ -445,7 +456,7 @@ adBuilder.show();
         AlertDialog.Builder adBuilder = new AlertDialog.Builder(
                 view.getContext());
         adBuilder
-                .setTitle("Shot on Blue Tower")
+                .setTitle("Shot on the Tower")
                 .setCancelable(true)
                 .setMessage("Where did it go?")
                 .setPositiveButton("High Goal",new DialogInterface.OnClickListener(){
@@ -550,12 +561,24 @@ adBuilder.show();
 
         Spinner bot = (Spinner)findViewById(R.id.spinner);
         bot.setOnItemSelectedListener(new SpinnerListener());
-Data.position = bot.getSelectedItem().toString();
+        Data.position = bot.getSelectedItem().toString();
         Log.w("/do it ",Data.position);
         EditText teamNumber = (EditText) findViewById(R.id.teamNumbers);
         EditText Name = (EditText) findViewById(R.id.Name);
-       Data.teamNumber = teamNumber.getText().toString();
-              Data.scoutName = Name.getText().toString();}
+        Data.teamNumber = teamNumber.getText().toString();
+        Data.scoutName = Name.getText().toString();
+
+        boolean isRed = Data.position.startsWith("Red");
+
+        if(isRed) {
+            Data.autonDefenses = autonRedCross;
+            Log.i("INFORMATION" , "Team is Red");
+        }
+        else {
+            Data.autonDefenses = autonBlueCross;
+            Log.i("INFORMATion" , "TEAM IS BLUE");
+        }
+    }
 
     public void MatchOver3(View view){Data.matchOver3 = !Data.matchOver3;
 
