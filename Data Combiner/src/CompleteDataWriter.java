@@ -37,7 +37,7 @@ public class CompleteDataWriter {
 	 */
 	public void write(File robotScoutCSV){
 		if(detectFatalError(robotScoutCSV)){
-			System.out.println("Fatal error caused. File unreadable.");
+			System.out.println("Fatal error caused. File unreadable." + "\n");
 			return;
 		}
 		try{
@@ -48,6 +48,7 @@ public class CompleteDataWriter {
 				writeLine(line);
 			}
 			read.close();
+			System.out.println();
 		} catch (IOException e){
 			e.printStackTrace();
 		}
@@ -150,7 +151,7 @@ public class CompleteDataWriter {
 	 */
 	private String[] split(String line){
 		String[] retVal = new String[robotScoutCSVHeader.length];
-		for(int i = 0; i < robotScoutCSVHeader.length - 1; i++){
+		for(int i = 0; i < robotScoutCSVHeader.length - 1 && line.indexOf(',') >= 0; i++){
 			int ind = line.indexOf(',');
 			retVal[i] = line.substring(0, ind);
 			line = line.substring(ind + 1);
@@ -171,7 +172,6 @@ public class CompleteDataWriter {
 					if (j < 5 && retVal[i] == 0){
 						retVal[i+9] = 1;
 					}
-					break;
 				}
 			}
 		}
@@ -205,13 +205,14 @@ public class CompleteDataWriter {
 	
 	private String detectWorkableError(String[] robotMatch){
 		String error = "";
-		if(robotMatch.length < robotScoutCSVHeader.length - 1){
+		if(robotMatch.length < robotScoutCSVHeader.length){
 			error += "Missing full data; ";
 		}
 		
 		String[] fieldData;
-		if((fieldData = fieldScoutData.get(Integer.parseInt(robotMatch[dataIndex("MatchNumber")]))) == null){
-			error += "No match data; ";
+		int match = Integer.parseInt(robotMatch[dataIndex("MatchNumber")]);
+		if((fieldData = fieldScoutData.get(match)) == null){
+			error += "No match data for match " + match + " ; ";
 		} else {
 			boolean isInMatch = false;
 			try{
@@ -221,10 +222,10 @@ public class CompleteDataWriter {
 						isInMatch = true;
 					}
 				}
+				if (!isInMatch){
+					error += "Team " + teamNumber + " is not in match " + match + " ; ";
+				}
 			} catch (NumberFormatException e){}
-			if (!isInMatch){
-				error += "Team not in stated match; ";
-			}
 		}
 		if(error.equals("")){
 			return null;

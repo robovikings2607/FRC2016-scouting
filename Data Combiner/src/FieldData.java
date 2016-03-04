@@ -24,16 +24,20 @@ public class FieldData extends HashMap<Integer, String[]>{
 	 * the Field Scout's data
 	 */
 	public FieldData(File fieldDataCSV){
-		try{
-			BufferedReader reader = new BufferedReader(new FileReader(fieldDataCSV));
-			//Start the reader at the line past the header
-			String nextLine = reader.readLine();
-			while ((nextLine = reader.readLine()) != null){
-				addEntry(nextLine);
+		if(!fieldDataCSV.exists()){
+			System.out.println("Could not find " + fieldDataCSV.getName());
+		} else {
+			try{
+				BufferedReader reader = new BufferedReader(new FileReader(fieldDataCSV));
+				//Start the reader at the line past the header
+				String nextLine = reader.readLine();
+				while ((nextLine = reader.readLine()) != null){
+					addEntry(nextLine);
+				}
+				reader.close();
+			} catch (IOException e){
+				e.printStackTrace();
 			}
-			reader.close();
-		} catch (IOException e){
-			e.printStackTrace();
 		}
 	}
 	
