@@ -64,7 +64,7 @@ public class CompleteDataWriter {
 			String response = scan.nextLine();
 
 			scan.close();
-			if (response.equals("n")){
+			if (!"y".equals(response.toLowerCase())){
 				return;
 			}
 		};

@@ -1,6 +1,4 @@
 import java.io.File;
-/*import java.io.IOException;
-import java.util.Scanner; */
 
 public class DataSynth {
 	
@@ -22,9 +20,5 @@ public class DataSynth {
 		
 		dataOut.closeWriter();
 		System.out.println("Done, completeData.csv updated");
-	/*	System.out.println("Press enter to close.");
-		Scanner scan = new Scanner(System.in);
-		scan.nextLine();
-		scan.close(); */
 	}
 }
