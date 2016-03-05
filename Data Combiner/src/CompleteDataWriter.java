@@ -13,8 +13,8 @@ import java.util.Scanner;
  *
  */
 public class CompleteDataWriter {
-	private static final String outputCSVHeader = "TeamNumber,MatchNumber,ColorAndNumber,ScoutName,EsBrokien,Absent,Cheval de Frise,Portcullis,Moat,Ramparts,Drawbridge,Sally Port,Rock Wall,Rough Terrain,Low Bar,Cheval de Frise Avoid,Portcullis Avoid,Moat Avoid,Ramparts Avoid,Drawbridge Avoid,Sally Port Avoid,Rock Wall Avoid,Rough Terrain Avoid,Low Bar Avoid,HighGoalHit,HighGoalMiss,LowGoalHit,LowGoalMiss,AutonHighHit,AutonHighMiss,AutonLowHit,AutonlowMiss,AutonDefenseReached,AutonDefenseCrossed,TowerScaled,TowerChallenged,Fouls,TechFouls,Breach,Capture,Win,Comments";
-	private static final String[] robotScoutCSVHeader = {"MatchNumber","TeamNumber","ColorAndNumber","ScoutName","EsBrokien","Absent","HighGoalHit","HighGoalMiss","LowGoalHit","LowGoalMiss","RD1Crossings","RD2Crossings","RD3Crossings","RD4Crossings","RD5Crossings","BD1Crossings","BD2Crossings","BD3Crossings","BD4Crossings","BD5Crossings","AutonHighHit","AutonHighMiss","AutonLowHit","AutonLowMiss","AutonDefenseReached","AutonDefenseCrossed","TowerScaled","TowerChallenged","Fouls","TechFouls","Comments"};
+	private static final String outputCSVHeader = "TeamNumber,MatchNumber,ColorAndNumber,ScoutName,EsBrokien,Absent,Stuck,Cheval de Frise,Portcullis,Moat,Ramparts,Drawbridge,Sally Port,Rock Wall,Rough Terrain,Low Bar,Cheval de Frise Avoid,Portcullis Avoid,Moat Avoid,Ramparts Avoid,Drawbridge Avoid,Sally Port Avoid,Rock Wall Avoid,Rough Terrain Avoid,Low Bar Avoid,HighGoalHit,HighGoalMiss,LowGoalHit,LowGoalMiss,AutonHighHit,AutonHighMiss,AutonLowHit,AutonlowMiss,AutonDefenseReached,AutonDefenseCrossed,TowerScaled,TowerChallenged,Fouls,TechFouls,Breach,Capture,Win,Comments";
+	private static final String[] robotScoutCSVHeader = {"MatchNumber","TeamNumber","ColorAndNumber","ScoutName","EsBrokien","Absent","Stuck","HighGoalHit","HighGoalMiss","LowGoalHit","LowGoalMiss","RD1Crossings","RD2Crossings","RD3Crossings","RD4Crossings","RD5Crossings","BD1Crossings","BD2Crossings","BD3Crossings","BD4Crossings","BD5Crossings","AutonHighHit","AutonHighMiss","AutonLowHit","AutonLowMiss","AutonDefenseReached","AutonDefenseCrossed","TowerScaled","TowerChallenged","Fouls","TechFouls","Comments"};
 	private static final String[] defenses = {"Cheval de Frise","Portcullis","Moat","Ramparts","Drawbridge","Sally Port","Rock Wall","Rough Terrain","Low Bar"};
 	private FieldData fieldScoutData;
 	private PrintWriter writer;
@@ -62,6 +62,7 @@ public class CompleteDataWriter {
 			Scanner scan = new Scanner(System.in);
 			System.out.println("Ignore error and write data anyways? (y/n)");
 			String response = scan.nextLine();
+
 			scan.close();
 			if (response.equals("n")){
 				return;
@@ -74,6 +75,7 @@ public class CompleteDataWriter {
 		writer.write(data[dataIndex("ScoutName")] + ",");
 		booleanWrite(data[dataIndex("EsBrokien")]);
 		booleanWrite(data[dataIndex("Absent")]);
+		booleanWrite(data[dataIndex("Stuck")]);
 		
 		writer.write(defenseCrossings(data));
 		
@@ -90,7 +92,13 @@ public class CompleteDataWriter {
 		int matchNumber = Integer.parseInt(data[dataIndex("MatchNumber")]);
 		String[] match = fieldScoutData.get(matchNumber);
 		
-		writer.write(match[Integer.parseInt(data[dataIndex("AutonDefenseCrossed")]) + 11] + ",");
+		int autonDefenseID = Integer.parseInt(data[dataIndex("AutonDefenseCrossed")]);
+		if(autonDefenseID != -1){
+			writer.write(match[autonDefenseID + 11] + ",");
+		} else {
+			writer.write("No Crossing,");
+		}
+		
 		booleanWrite(data[dataIndex("TowerScaled")]);
 		booleanWrite(data[dataIndex("TowerChallenged")]);
 		writer.write(data[dataIndex("Fouls")] + ",");

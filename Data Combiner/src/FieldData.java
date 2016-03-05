@@ -25,7 +25,7 @@ public class FieldData extends HashMap<Integer, String[]>{
 	 */
 	public FieldData(File fieldDataCSV){
 		if(!fieldDataCSV.exists()){
-			System.out.println("Could not find " + fieldDataCSV.getName());
+			System.out.println("Could not find " + fieldDataCSV.getName() + "\n");
 		} else {
 			try{
 				BufferedReader reader = new BufferedReader(new FileReader(fieldDataCSV));
@@ -35,6 +35,7 @@ public class FieldData extends HashMap<Integer, String[]>{
 					addEntry(nextLine);
 				}
 				reader.close();
+				System.out.println("Extracted Field Data" + "\n");
 			} catch (IOException e){
 				e.printStackTrace();
 			}
