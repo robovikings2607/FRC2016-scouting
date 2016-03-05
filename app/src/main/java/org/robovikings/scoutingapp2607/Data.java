@@ -9,11 +9,19 @@ public class Data {
 
 
 
-    static int highMiss, lowMiss, High, Low, aHigh, aLow, aLowMiss, aHighMiss, fouls, techFouls, matchNumber;
+    static int highMiss, lowMiss, High, Low, aHigh, aLow, aLowMiss, aHighMiss, fouls, techFouls;
+    static int matchNumber = 1;
 
-    static boolean challenge, scale, spy, broken, absent, reach, nothing, matchOver3, matchOver1;
+    static boolean challenge, Stuck, scale, spy, broken, absent, reach, nothing, matchOver3, matchOver1, setmatchChecked;
 
-    static String teamNumber, defenseComments, crossingComments, skillComments, scoutName, position, CSV;
+    static String teamNumber;
+
+    static String defenseComments;
+    static String crossingComments;
+    static String skillComments;
+    static String scoutName;
+    static String position;
+    static String CSV;
 
 
 

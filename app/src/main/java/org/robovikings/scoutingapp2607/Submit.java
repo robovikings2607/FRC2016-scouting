@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.File;
@@ -20,9 +21,10 @@ import java.io.PrintWriter;
 
 public class Submit extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit);
@@ -31,24 +33,46 @@ public class Submit extends AppCompatActivity {
 
         TextView CSV = (TextView) findViewById(R.id.submit);
         CSV.setText(Data.CSV);
+
+
+
+
     }
 
+    public void upMatch(View view){
+        Data.matchNumber++;
+      Snackbar snackbar = Snackbar.make(view, "The match number for this match is now: " + (Data.matchNumber ), Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+    public void downMatch(View view){
+        Data.matchNumber--;
+      Snackbar snackbar = Snackbar.make(view, "The match number for this match is now: " + (Data.matchNumber), Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+
+
+    public void displayMatch(View view) {
+        Snackbar snackbar = Snackbar.make(view, "Current Match Number is: " + Data.matchNumber,Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
     public void sendData(View view){
+
         PrintWriter writer;
         File file;
 
 
         try {
-            file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) ,
-                   Data.position+".CSV");
+            file  = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), Data.position+".csv");
 
             boolean existence = file.exists();
             writer = new PrintWriter(new FileOutputStream(file , true));
             if(!existence){
-                writer.println("MatchNumber,TeamNumber,ColorAndNumber,ScoutName,EsBrokien,Absent,HighGoalHit,HighGoalMiss,LowGoalHit,LowGoalMiss,RD1Crossings,RD2Crossings,RD3Crossings,RD4Crossings,RD5Crossings,BD1Crossings,BD2Crossings,BD3Crossings,BD4Crossings,BD5Crossings,AutonHighHit,AutonHighMiss,AutonLowHit,AutonLowMiss,AutonDefenseReached,AutonDefenseCrossed,TowerScaled,TowerChallenged,Fouls,TechFouls,Comments");
+                writer.println("MatchNumber,TeamNumber,ColorAndNumber,ScoutName,EsBrokien,Absent,Stuck,HighGoalHit,HighGoalMiss,LowGoalHit,LowGoalMiss,RD1Crossings,RD2Crossings,RD3Crossings,RD4Crossings,RD5Crossings,BD1Crossings,BD2Crossings,BD3Crossings,BD4Crossings,BD5Crossings,AutonHighHit,AutonHighMiss,AutonLowHit,AutonLowMiss,AutonDefenseReached,AutonDefenseCrossed,TowerScaled,TowerChallenged,Fouls,TechFouls,Comments");
             }
 
-            writer.println(Data.CSV);
+           writer.println(Data.CSV);
 
             writer.flush();
             writer.close();
@@ -58,8 +82,8 @@ public class Submit extends AppCompatActivity {
         }
 //String home = Submit.this.getFilesDir().getAbsolutePath();
    //     Snackbar.make(view , home , Snackbar.LENGTH_INDEFINITE).show();
-
-Data.aHighMiss = 0;
+        //match = (TextView)findViewById(R.id.matchNumber);
+        Data.aHighMiss = 0;
         Data.aHigh = 0;
         Data.matchOver1 = false;
         Data.aLowMiss = 0;
@@ -82,9 +106,11 @@ Data.aHighMiss = 0;
         Data.lowMiss = 0;
         Data.skillComments = "";
         Data.matchOver3 = false;
-
+        Data.Stuck = false;
+        Data.matchNumber++;
         Intent main = new Intent(this, Scout.class);
         startActivity(main);
+
 
 
         this.finish();

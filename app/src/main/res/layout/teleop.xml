@@ -32,25 +32,35 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Blue Low Bar"
-                android:id="@+id/button0"
-                android:layout_gravity="left|center_vertical"
+                android:text="Red Defense 5"
+                android:id="@+id/button13"
                 android:layout_column="10"
-                android:onClick="Bluedefense1"/>
+                android:onClick="Reddefense5"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Red Low Bar"
-                android:id="@+id/button9"
+                android:text="Blue Low Bar"
+                android:id="@+id/button0"
+                android:layout_gravity="left|center_vertical"
                 android:layout_column="33"
-                android:onClick="Reddefense1"/>
+                android:onClick="Bluedefense1"/>
+
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Red Defense 4"
+                android:id="@+id/button12"
+                android:layout_column="10"
+                android:onClick="Reddefense4"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -59,22 +69,23 @@
                 android:text="Blue Defense 2"
                 android:id="@+id/button7"
                 android:layout_gravity="right|center_vertical"
-                android:layout_column="10"
+                android:layout_column="33"
                 android:onClick="Bluedefense2"/>
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Red Defense 2"
-                android:id="@+id/button10"
-                android:layout_column="33"
-                android:onClick="Reddefense2"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Red Defense 3"
+                android:id="@+id/button11"
+                android:layout_column="10"
+                android:onClick="Reddefense3"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -83,22 +94,23 @@
                 android:text="Blue Defense 3"
                 android:id="@+id/button8"
                 android:layout_gravity="right|bottom"
-                android:layout_column="10"
+                android:layout_column="33"
                 android:onClick="Bluedefense3"/>
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Red Defense 3"
-                android:id="@+id/button11"
-                android:layout_column="33"
-                android:onClick="Reddefense3"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Red Defense 2"
+                android:id="@+id/button10"
+                android:layout_column="10"
+                android:onClick="Reddefense2"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -107,23 +119,23 @@
                 android:text="Blue Defense 4"
                 android:id="@+id/button6"
                 android:layout_gravity="top|right"
-                android:layout_column="10"
-                android:onClick="Bluedefense4"
-                android:layout_span="23" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Red Defense 4"
-                android:id="@+id/button12"
                 android:layout_column="33"
-                android:onClick="Reddefense4"/>
+                android:onClick="Bluedefense4" />
+
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Red Low Bar"
+                android:id="@+id/button9"
+                android:layout_column="10"
+                android:onClick="Reddefense1"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -132,17 +144,9 @@
                 android:text="Blue Defense 5"
                 android:id="@+id/button3"
                 android:layout_gravity="left|top"
-                android:layout_column="10"
+                android:layout_column="33"
                 android:onClick="Bluedefense5"/>
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Red Defense 5"
-                android:id="@+id/button13"
-                android:layout_column="33"
-                android:onClick="Reddefense5"/>
         </TableRow>
 
         <TableRow
@@ -228,15 +232,6 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Blue Tower"
-                android:id="@+id/button4"
-                android:layout_column="10"
-                android:onClick="blueTower"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -244,8 +239,45 @@
                 android:layout_height="wrap_content"
                 android:text="Red Tower"
                 android:id="@+id/button5"
-                android:layout_column="33"
+                android:layout_column="10"
                 android:onClick="redTower"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blue Tower"
+                android:id="@+id/button4"
+                android:layout_column="33"
+                android:onClick="blueTower"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Got Stuck?"
+                android:id="@+id/checkBox7"
+                android:layout_column="10"
+                android:checked="false"
+                android:onClick="stuck"/>
+
         </TableRow>
     </TableLayout>
 

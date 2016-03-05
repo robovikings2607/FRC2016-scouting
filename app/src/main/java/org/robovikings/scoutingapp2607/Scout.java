@@ -244,53 +244,6 @@ public class Scout extends AppCompatActivity {
         snackbar.show();
     }
 
-    public void AutonReddefense1(View view){
-
-        Data.autonDefenses = 0;
-        Snackbar snackbar = Snackbar
-                .make(view, "Set Crossing to Red LowBar", Snackbar.LENGTH_INDEFINITE);
-
-        snackbar.show();
-    }
-
-    public void AutonReddefense2(View view){
-
-        Data.autonDefenses = 1;
-        Snackbar snackbar = Snackbar
-                .make(view, "Set Crossing to Red 2", Snackbar.LENGTH_INDEFINITE);
-
-        snackbar.show();
-    }
-
-    public void AutonReddefense3(View view){
-
-        Data.autonDefenses = 2;
-        Snackbar snackbar = Snackbar
-                .make(view, "Set Crossing to Red 3", Snackbar.LENGTH_INDEFINITE);
-
-        snackbar.show();
-    }
-
-    public void AutonReddefense4(View view){
-
-        Data.autonDefenses = 3;
-        Snackbar snackbar = Snackbar
-                .make(view, "Set Crossing to Red 4", Snackbar.LENGTH_INDEFINITE);
-
-        snackbar.show();
-    }
-
-    public void AutonReddefense5(View view){
-
-        Data.autonDefenses = 4;
-        Snackbar snackbar = Snackbar
-                .make(view, "Set Crossing to Red 5", Snackbar.LENGTH_INDEFINITE);
-
-
-
-        snackbar.show();
-    }
-
     public void blueTower(final View view){
         AlertDialog.Builder adBuilder = new AlertDialog.Builder(
                 view.getContext());
@@ -450,6 +403,8 @@ adBuilder.show();
         Data.broken = !Data.broken;
     }
 
+    public void stuck(View view) {Data.Stuck = !Data.Stuck;}
+
     public void nothing (View view) {Data.nothing = !Data.nothing;}
 
     public void autonblueTower(final View view){
@@ -597,8 +552,8 @@ adBuilder.show();
 
 
     public void submit(View view) {
-            if(Data.matchOver3 || Data.matchOver1 == true) {
-                Data.matchNumber++;
+            if(Data.matchOver3 == true || Data.matchOver1 == true) {
+
 
                 //Spinner bot = (Spinner)findViewById(R.id.spinner);
               //  bot.setOnItemSelectedListener(new SpinnerListener());
@@ -610,6 +565,7 @@ adBuilder.show();
                 stringBuilder.append(Data.scoutName).append(",");
                 stringBuilder.append(Data.broken).append(",");
                 stringBuilder.append(Data.absent).append(",");
+                stringBuilder.append(Data.Stuck).append(",");
                 stringBuilder.append(Data.High).append(",");
                 stringBuilder.append(Data.highMiss).append(",");
                 stringBuilder.append(Data.Low).append(",");
@@ -694,6 +650,10 @@ adBuilder.show();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
+
+
 
 
 
