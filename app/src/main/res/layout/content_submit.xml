@@ -149,13 +149,6 @@
                     android:layout_column="0">
 
 
-                    <Button
-                        style="?android:attr/buttonStyleSmall"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Current Match Number"
-                        android:id="@+id/button20"
-                        android:onClick="displayMatch"/>
                 </TableRow>
 
 
@@ -164,6 +157,36 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"></TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/displayMatchNumber"
+                    android:layout_column="0" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"

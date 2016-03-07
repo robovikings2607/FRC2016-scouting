@@ -5,7 +5,7 @@ package org.robovikings.scoutingapp2607;
  */
 public class Data {
     static int[] teleopdefenses = new int[10];
-    static int autonDefenses;//replace with ints 0-9 each representing one defense
+    static int autonDefenses;
 
 
 
@@ -25,5 +25,5 @@ public class Data {
 
 
 
-    //give Mike header of CSV file. (Where all the data lives)
+
 }

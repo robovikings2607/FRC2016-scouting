@@ -1,6 +1,8 @@
 package org.robovikings.scoutingapp2607;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,7 +23,7 @@ import java.io.PrintWriter;
 
 public class Submit extends AppCompatActivity {
 
-
+TextView match;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,8 @@ public class Submit extends AppCompatActivity {
 
         TextView CSV = (TextView) findViewById(R.id.submit);
         CSV.setText(Data.CSV);
-
+ match = (TextView) findViewById(R.id.displayMatchNumber);
+        match.setText("Match Number: " + Data.matchNumber);
 
 
 
@@ -41,13 +44,17 @@ public class Submit extends AppCompatActivity {
 
     public void upMatch(View view){
         Data.matchNumber++;
+        match.setText("Match Number: " + Data.matchNumber);
+
       Snackbar snackbar = Snackbar.make(view, "The match number for this match is now: " + (Data.matchNumber ), Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 
     public void downMatch(View view){
         Data.matchNumber--;
-      Snackbar snackbar = Snackbar.make(view, "The match number for this match is now: " + (Data.matchNumber), Snackbar.LENGTH_LONG);
+        match.setText("Match Number: " + Data.matchNumber);
+
+        Snackbar snackbar = Snackbar.make(view, "The match number for this match is now: " + (Data.matchNumber), Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 
@@ -59,6 +66,66 @@ public class Submit extends AppCompatActivity {
     }
     public void sendData(View view){
 
+        AlertDialog.Builder adBuilder = new AlertDialog.Builder(
+                view.getContext());
+        adBuilder
+                .setTitle("Are you SURE?")
+                .setCancelable(false)
+                .setMessage("Was this match number " + Data.matchNumber)
+                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+
+
+
+
+
+
+
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(Data.matchNumber).append(",");
+        stringBuilder.append(Data.teamNumber).append(",");
+        stringBuilder.append(Data.position).append(",");
+        stringBuilder.append(Data.scoutName).append(",");
+        stringBuilder.append(Data.broken).append(",");
+        stringBuilder.append(Data.absent).append(",");
+        stringBuilder.append(Data.Stuck).append(",");
+        stringBuilder.append(Data.High).append(",");
+        stringBuilder.append(Data.highMiss).append(",");
+        stringBuilder.append(Data.Low).append(",");
+        stringBuilder.append(Data.lowMiss).append(",");
+        stringBuilder.append(Data.teleopdefenses[5]).append(",");
+        stringBuilder.append(Data.teleopdefenses[6]).append(",");
+        stringBuilder.append(Data.teleopdefenses[7]).append(",");
+        stringBuilder.append(Data.teleopdefenses[8]).append(",");
+        stringBuilder.append(Data.teleopdefenses[9]).append(",");
+        stringBuilder.append(Data.teleopdefenses[0]).append(",");
+        stringBuilder.append(Data.teleopdefenses[1]).append(",");
+        stringBuilder.append(Data.teleopdefenses[2]).append(",");
+        stringBuilder.append(Data.teleopdefenses[3]).append(",");
+        stringBuilder.append(Data.teleopdefenses[4]).append(",");
+        stringBuilder.append(Data.aHigh).append(",");
+        stringBuilder.append(Data.aHighMiss).append(",");
+        stringBuilder.append(Data.aLow).append(",");
+        stringBuilder.append(Data.aLowMiss).append(",");
+        stringBuilder.append(Data.reach).append(",");
+        stringBuilder.append(Data.autonDefenses).append(",");
+        stringBuilder.append(Data.scale).append(",");
+        stringBuilder.append(Data.challenge).append(",");
+        stringBuilder.append(Data.fouls).append(",");
+        stringBuilder.append(Data.techFouls).append(",");
+            Data.defenseComments.replaceAll("\n", " ");
+            Data.skillComments.replaceAll("\n", " ");
+            Data.crossingComments.replaceAll("\n"," ");
+        stringBuilder.append(Data.defenseComments + " " + Data.skillComments + " " + Data.crossingComments);
+        Data.CSV = stringBuilder.toString();
+
+//remove new line characters from comment strings
         PrintWriter writer;
         File file;
 
@@ -106,12 +173,13 @@ public class Submit extends AppCompatActivity {
         Data.lowMiss = 0;
         Data.skillComments = "";
         Data.matchOver3 = false;
+        Data.matchOver1 = false;
         Data.Stuck = false;
         Data.matchNumber++;
         Intent main = new Intent(this, Scout.class);
         startActivity(main);
 
-
+//make alert dialogue to confirm correct match number
 
         this.finish();
     }

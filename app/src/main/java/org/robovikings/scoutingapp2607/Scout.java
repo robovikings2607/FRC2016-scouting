@@ -210,7 +210,24 @@ public class Scout extends AppCompatActivity {
 
         snackbar.show();
     }
+        public void fieldReset(View view){
+            Data.aHighMiss = 0;
+            Data.highMiss = 0;
+            Data.aLowMiss = 0;
+            Data.High = 0;
+            Data.aHigh = 0;
+            Data.lowMiss = 0;
+            Data.aLow = 0;
+            Data.Low = 0;
+            Data.fouls = 0;
+            Data.techFouls = 0;
 
+            for(int x = 0; x <= Data.teleopdefenses.length-1; x++){
+                Data.teleopdefenses[x] = 0;
+            }
+            Snackbar snackbar = Snackbar.make(view, "Reset all tower, foul and defense buttons", Snackbar.LENGTH_SHORT);
+            snackbar.show();
+        }
     public void AutonBluedefense3(View view){
 
 //        Data.autonDefenses = 7;
@@ -274,14 +291,14 @@ public class Scout extends AppCompatActivity {
                                 .setTitle("Missed Shot")
                                 .setCancelable(true)
                                 .setMessage("Where was it going?")
-                                .setPositiveButton("Low Goal Miss", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("Low Goal Miss", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Data.lowMiss++;
                                         dialog.cancel();
                                     }
                                 })
-                        .setNegativeButton("High Goal Miss", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("High Goal Miss", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Data.highMiss++;
@@ -327,14 +344,14 @@ adBuilder.show();
                                 .setTitle("Missed Shot")
                                 .setCancelable(true)
                                 .setMessage("Where was it going?")
-                                .setPositiveButton("Low Goal Miss", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("Low Goal Miss", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Data.lowMiss++;
                                         dialog.cancel();
                                     }
                                 })
-                        .setNegativeButton("High Goal Miss", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("High Goal Miss", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Data.highMiss++;
@@ -437,13 +454,13 @@ adBuilder.show();
                                 .setTitle("Missed Shot")
                                 .setCancelable(true)
                                 .setMessage("Where was it going?")
-                                .setPositiveButton("Low Goal Miss", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("Low Goal Miss", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Data.aLowMiss++;
                                         dialog.cancel();
                                     }
-                                }).setNegativeButton("High Goal Miss", new DialogInterface.OnClickListener() {
+                                }).setPositiveButton("High Goal Miss", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Data.aHighMiss++;
@@ -631,6 +648,17 @@ adBuilder.show();
 
             }
 
+if(Data.matchNumber <= 1){
+    TextView pearlJam = (TextView) findViewById(R.id.displayMatch);
+    pearlJam.setText("Match Number: " + Data.matchNumber);
+}
+            else{
+    EditText derName = (EditText)findViewById(R.id.Name);
+
+
+    derName.setText(Data.scoutName);
+
+            }
             Auton auton = new Auton();
 
           auton.setArguments(getIntent().getExtras());
