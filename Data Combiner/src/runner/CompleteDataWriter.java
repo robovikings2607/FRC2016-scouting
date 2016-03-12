@@ -1,3 +1,4 @@
+package runner;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -6,6 +7,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import dataStorage.FieldData;
 /**
  * Oh my this class is big. Very, very big. I should refactor this sometime later, for sure, but now is most certainly
  * not the time.
@@ -13,20 +16,43 @@ import java.util.Scanner;
  *
  */
 public class CompleteDataWriter {
-	private static final String outputCSVHeader = "TeamNumber,MatchNumber,ColorAndNumber,ScoutName,EsBrokien,Absent,Stuck,Cheval de Frise,Portcullis,Moat,Ramparts,Drawbridge,Sally Port,Rock Wall,Rough Terrain,Low Bar,Cheval de Frise Avoid,Portcullis Avoid,Moat Avoid,Ramparts Avoid,Drawbridge Avoid,Sally Port Avoid,Rock Wall Avoid,Rough Terrain Avoid,Low Bar Avoid,HighGoalHit,HighGoalMiss,LowGoalHit,LowGoalMiss,AutonHighHit,AutonHighMiss,AutonLowHit,AutonlowMiss,AutonDefenseReached,AutonDefenseCrossed,TowerScaled,TowerChallenged,Fouls,TechFouls,Breach,Capture,Win,Comments";
-	private static final String[] robotScoutCSVHeader = {"MatchNumber","TeamNumber","ColorAndNumber","ScoutName","EsBrokien","Absent","Stuck","HighGoalHit","HighGoalMiss","LowGoalHit","LowGoalMiss","RD1Crossings","RD2Crossings","RD3Crossings","RD4Crossings","RD5Crossings","BD1Crossings","BD2Crossings","BD3Crossings","BD4Crossings","BD5Crossings","AutonHighHit","AutonHighMiss","AutonLowHit","AutonLowMiss","AutonDefenseReached","AutonDefenseCrossed","TowerScaled","TowerChallenged","Fouls","TechFouls","Comments"};
-	private static final String[] defenses = {"Cheval de Frise","Portcullis","Moat","Ramparts","Drawbridge","Sally Port","Rock Wall","Rough Terrain","Low Bar"};
+	private static final String outputCSVHeader = "TeamNumber,MatchNumber,ColorAndNumber," +
+									"ScoutName,EsBrokien,Absent,Stuck,Cheval de Frise," + 
+									"Portcullis,Moat,Ramparts,Drawbridge,Sally Port," +
+									"Rock Wall,Rough Terrain,Low Bar,Cheval de Frise Avoid," +
+									"Portcullis Avoid,Moat Avoid,Ramparts Avoid,Drawbridge Avoid," +
+									"Sally Port Avoid,Rock Wall Avoid,Rough Terrain Avoid," + 
+									"Low Bar Avoid,HighGoalHit,HighGoalMiss,LowGoalHit,LowGoalMiss," +
+									"AutonHighHit,AutonHighMiss,AutonLowHit,AutonlowMiss," +
+									"AutonDefenseReached,AutonDefenseCrossed,TowerScaled," +
+									"TowerChallenged,Fouls,TechFouls,Breach,Capture,Win,Comments";
+	private static final String[] robotScoutCSVHeader = {"MatchNumber","TeamNumber","ColorAndNumber",
+									"ScoutName","EsBrokien","Absent","Stuck","HighGoalHit","HighGoalMiss",
+									"LowGoalHit","LowGoalMiss","RD1Crossings","RD2Crossings","RD3Crossings",
+									"RD4Crossings","RD5Crossings","BD1Crossings","BD2Crossings",
+									"BD3Crossings","BD4Crossings","BD5Crossings","AutonHighHit",
+									"AutonHighMiss","AutonLowHit","AutonLowMiss","AutonDefenseReached",
+									"AutonDefenseCrossed","TowerScaled","TowerChallenged","Fouls","TechFouls",
+									"Comments"};
+	private static final String[] defenses = {"Cheval de Frise","Portcullis","Moat","Ramparts",
+									"Drawbridge","Sally Port","Rock Wall","Rough Terrain","Low Bar"};
 	private FieldData fieldScoutData;
 	private PrintWriter writer;
+	private Scanner scan;
 	
 	public CompleteDataWriter(File outputFile, FieldData fieldScoutData){
 		this.fieldScoutData = fieldScoutData;
+		scan = new Scanner(System.in);
 		try {
 			writer = new PrintWriter(new FileOutputStream(outputFile, false));
 			writer.write(outputCSVHeader + "\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void closeScanner(){
+		scan.close();
 	}
 	
 	/**
@@ -36,16 +62,16 @@ public class CompleteDataWriter {
 	 * @param robotScoutCSV The file to be written in.
 	 */
 	public void write(File robotScoutCSV){
-		if(detectFatalError(robotScoutCSV)){
+		/*if(detectFatalError(robotScoutCSV)){
 			System.out.println("Fatal error caused. File unreadable." + "\n");
 			return;
-		}
+		} */
 		try{
 			BufferedReader read = new BufferedReader(new FileReader(robotScoutCSV));
 			String line = read.readLine();
 			System.out.println("Reading from " + robotScoutCSV.getName());
 			while((line = read.readLine()) != null){
-				writeLine(line);
+				writeLine(line, scan);
 			}
 			read.close();
 			System.out.println();
@@ -54,20 +80,18 @@ public class CompleteDataWriter {
 		}
 	}
 	
-	private void writeLine(String line){
+	private void writeLine(String line, Scanner scan){
 		String[] data = split(line);
 		String err = detectWorkableError(data);
 		if (detectWorkableError(data) != null){
 			System.out.println(err);
-			Scanner scan = new Scanner(System.in);
 			System.out.println("Ignore error and write data anyways? (y/n)");
 			String response = scan.nextLine();
 
-			scan.close();
 			if (!"y".equals(response.toLowerCase())){
 				return;
 			}
-		};
+		}; 
 		
 		writer.write(data[dataIndex("TeamNumber")] + ",");
 		writer.write(data[dataIndex("MatchNumber")] + ",");
@@ -121,7 +145,7 @@ public class CompleteDataWriter {
 			booleanWrite(!redWin);
 		}
 		
-		writer.write(data[dataIndex("Comments")] + "\n");
+		writer.write(data[dataIndex("Comments")].replaceAll(",", "-") + "\n");
 	}
 	//HighGoalHit,HighGoalMiss,LowGoalHit,LowGoalMiss,AutonHighHit,AutonHighMiss,AutonLowHit,AutonlowMiss,
 	//AutonDefenseReached,AutonDefenseCrossed,TowerScaled,TowerChallenged,Fouls,TechFouls,Breach,Capture,Win,Comments
@@ -218,9 +242,20 @@ public class CompleteDataWriter {
 		}
 		
 		String[] fieldData;
-		int match = Integer.parseInt(robotMatch[dataIndex("MatchNumber")]);
+		String matchNumber = robotMatch[dataIndex("MatchNumber")];
+		int match = -1;
+		if("".equals(matchNumber) || "null".equals(matchNumber)){
+			error += "matchNumber does not exist; ";
+		} else {
+			try{
+				match = Integer.parseInt(robotMatch[dataIndex("MatchNumber")]);
+			} catch (NumberFormatException e){
+				error += "Match number is a string; ";
+			}
+		}
+		
 		if((fieldData = fieldScoutData.get(match)) == null){
-			error += "No match data for match " + match + " ; ";
+			error += "No match data for match " + match + "; ";
 		} else {
 			boolean isInMatch = false;
 			try{

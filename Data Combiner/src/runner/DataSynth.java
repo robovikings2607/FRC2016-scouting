@@ -1,4 +1,7 @@
+package runner;
 import java.io.File;
+
+import dataStorage.FieldData;
 
 public class DataSynth {
 	
@@ -19,6 +22,7 @@ public class DataSynth {
 		}
 		
 		dataOut.closeWriter();
+		dataOut.closeScanner();
 		System.out.println("Done, completeData.csv updated");
 	}
 }
