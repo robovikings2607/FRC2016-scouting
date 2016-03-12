@@ -619,7 +619,6 @@ adBuilder.show();
     }
 
 
-
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -630,9 +629,9 @@ adBuilder.show();
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
+        /**
+        * The {@link ViewPager} that will host the section contents.
+        */
     private ViewPager mViewPager;
 
     @Override
