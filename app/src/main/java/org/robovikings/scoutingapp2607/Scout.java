@@ -3,24 +3,21 @@ package org.robovikings.scoutingapp2607;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,6 +25,7 @@ import android.widget.TextView;
 public class Scout extends AppCompatActivity {
 
     private int autonBlueCross = -1 , autonRedCross = -1;
+
 
     public void Bluedefense1(View view){
 
@@ -210,7 +208,7 @@ public class Scout extends AppCompatActivity {
 
         snackbar.show();
     }
-        public void fieldReset(View view){
+    public void fieldReset(View view){
             Data.aHighMiss = 0;
             Data.highMiss = 0;
             Data.aLowMiss = 0;
@@ -261,17 +259,40 @@ public class Scout extends AppCompatActivity {
         snackbar.show();
     }
 
-    public void blueTower(final View view){
-        AlertDialog.Builder adBuilder = new AlertDialog.Builder(
+    public void teleopShotOnTower(final View view){
+        final AlertDialog.Builder adBuilder = new AlertDialog.Builder(
                 view.getContext());
         adBuilder
-                .setTitle("Shot on Blue Tower")
+                .setTitle("Shot on the Tower")
                 .setCancelable(true)
                 .setMessage("Where did it go?")
-                .setPositiveButton("High Goal",new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dlg, int blhGoal){
-                        Data.High++;
-                        dlg.cancel();
+                .setPositiveButton("High Goal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int blhGoal) {
+
+                        AlertDialog.Builder hitPrompt = new AlertDialog.Builder(view.getContext());
+                        hitPrompt.setTitle("Hit Or Miss")
+                                .setCancelable(true)
+                                .setMessage("Did it go in the goal or not?");
+
+                        hitPrompt.setNegativeButton("Hit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface innerDialog, int hit) {
+                                Data.High++;
+                                innerDialog.cancel();
+                            }
+                        });
+
+                        hitPrompt.setPositiveButton("Miss", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface innerDialog, int hit) {
+                                Data.highMiss++;
+                                innerDialog.cancel();
+                            }
+                        });
+
+                        hitPrompt.show();
+                        dialog.cancel();
                     }
 
                 })
@@ -279,37 +300,29 @@ public class Scout extends AppCompatActivity {
                 .setNegativeButton("Low Goal", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int blLGoal) {
-                        Data.Low++;
-                        dialog.cancel();
-                    }
-                })
-                .setNeutralButton("Miss", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int blMiss) {
-                       AlertDialog.Builder adBuilder = new AlertDialog.Builder(view.getContext());
-                        adBuilder
-                                .setTitle("Missed Shot")
+                        AlertDialog.Builder hitPrompt = new AlertDialog.Builder(view.getContext());
+                        hitPrompt.setTitle("Hit Or Miss")
                                 .setCancelable(true)
-                                .setMessage("Where was it going?")
-                                .setNegativeButton("Low Goal Miss", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Data.lowMiss++;
-                                        dialog.cancel();
-                                    }
-                                })
-                        .setPositiveButton("High Goal Miss", new DialogInterface.OnClickListener() {
+                                .setMessage("Did it go in the goal or not?");
+
+                        hitPrompt.setNegativeButton("Hit", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Data.highMiss++;
+                            public void onClick(DialogInterface dialog, int hit) {
+                                Data.Low++;
                                 dialog.cancel();
                             }
                         });
-adBuilder.show();
+                        hitPrompt.setPositiveButton("Miss", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int hit) {
+                                Data.lowMiss++;
+                                dialog.cancel();
+                            }
+                        });
+                        hitPrompt.show();
                         dialog.cancel();
                     }
-                })
-        ;
+                });
         AlertDialog alertDialog = adBuilder.create();
         alertDialog.show();
     }
@@ -569,7 +582,7 @@ adBuilder.show();
 
 
     public void submit(View view) {
-            if(Data.matchOver3 == true || Data.matchOver1 == true) {
+            if(Data.matchOver3 == true && Data.matchOver1 == true) {
 
 
                 //Spinner bot = (Spinner)findViewById(R.id.spinner);
@@ -608,6 +621,7 @@ adBuilder.show();
                 stringBuilder.append(Data.fouls).append(",");
                 stringBuilder.append(Data.techFouls).append(",");
                 stringBuilder.append(Data.defenseComments + " " + Data.skillComments + " " + Data.crossingComments);
+                stringBuilder.append("\n");
                 Data.CSV = stringBuilder.toString();
            Intent submission = new Intent(this, Submit.class);
            startActivity(submission);

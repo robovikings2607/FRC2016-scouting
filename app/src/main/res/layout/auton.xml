@@ -46,23 +46,9 @@
             android:id="@+id/Name"
             android:hint="Scout Name"/>
 
-
-        <ScrollView
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView"
-            android:fillViewport="false">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="1">
-
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="564dp">
+            android:layout_height="564dp">
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -226,14 +212,11 @@
                             android:layout_column="23"
                             android:onClick="nothing"/>
 
-
                     </TableRow>
 
-                </TableLayout>
-            </LinearLayout>
-        </ScrollView>
-
+        </TableLayout>
     </LinearLayout>
+
 
     <TextView
         android:layout_width="wrap_content"
