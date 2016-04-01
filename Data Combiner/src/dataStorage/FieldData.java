@@ -18,6 +18,8 @@ import java.util.HashMap;
 public class FieldData extends HashMap<Integer, String[]>{
 	
 	private static final long serialVersionUID = 1L;
+	private static final String[] defenses = {"Cheval de Frise","Portcullis","Moat","Ramparts",
+			"Drawbridge","Sally Port","Rock Wall","Rough Terrain","Low Bar"};
 	
 	/**
 	 * This constructor creates the FieldData object from a CSV file. 
@@ -127,5 +129,25 @@ public class FieldData extends HashMap<Integer, String[]>{
 		
 		retVal += "Missing matches: " + Arrays.toString(checkForMissingData());
 		return retVal;
+	}
+	
+	/**
+	 * Converts a positional array of defenses into the precise array
+	 * @param matchNumber
+	 * @param positionalDefenses
+	 * @return
+	 */
+	public int[] convertToPreciseArray(int matchNumber, int[] positionalDefenses){
+		int[] preciseDefenses = new int[9];
+		int fieldDataStart = 11;
+		String[] fieldDat = get(new Integer(matchNumber));
+		for(int i = 0; i < 9; i++){
+			for(int j = 0; j < 10; j++){
+				if(fieldDat[j + fieldDataStart].equals(defenses[i])){
+					preciseDefenses[i] += positionalDefenses[j];
+				}
+			}
+		}
+		return preciseDefenses;
 	}
 }

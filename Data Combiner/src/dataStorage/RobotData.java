@@ -1,14 +1,10 @@
 package dataStorage;
 
-
-import java.util.Arrays;
-
 import errorHandling.InvalidDataException;
 
 public class RobotData {
 	private String scoutName, positionID, defenseComments, crossingComments, skillComments;
 	private int[] defenseCrossings;
-	private int[] defenseAvoids;
 	private int[] autonDefense;
 	private int teamNumber, matchNumber, highGoalHit,highGoalMiss,lowGoalHit,
 				lowGoalMiss,autonHighHit,autonHighMiss,autonLowHit,autonlowMiss,fouls,techFouls;
@@ -24,6 +20,12 @@ public class RobotData {
 		
 	}
 	
+	public void combineData(FieldData fd){
+		String[] matchData = fd.get(new Integer(matchNumber));
+		FieldMatch fmMatchData = new FieldMatch(matchData);
+		fmMatchData.specifyData(this);
+	}
+
 	public String getCSVEntry() throws InvalidDataException{
 		if(!defensesIdentified){
 			throw new InvalidDataException("The data for Match " + matchNumber + 
@@ -58,5 +60,55 @@ public class RobotData {
 			ret[i + a.length] = b[i];
 		}
 		return ret;
+	}
+	
+	public int[] getDefenseCrossings() {
+		return defenseCrossings;
+	}
+
+	public int[] getAutonDefense() {
+		return autonDefense;
+	}
+	
+	public String getPositionID() {
+		return positionID;
+	}
+
+	public void setDefensesIdentified(boolean defensesIdentified) {
+		this.defensesIdentified = defensesIdentified;
+	}
+
+	public void setBreach(int breach) {
+		Breach = breach;
+	}
+
+	public void setCapture(int capture) {
+		Capture = capture;
+	}
+
+	public void setWin(int win) {
+		Win = win;
+	}
+
+	public void setPreciseDefenseCrossings(int[] preciseDefenseCrossings) {
+		this.preciseDefenseCrossings = preciseDefenseCrossings;
+	}
+
+	public void setPreciseDefenseAvoids(int[] preciseDefenseAvoids) {
+		this.preciseDefenseAvoids = preciseDefenseAvoids;
+	}
+
+	public void setPreciseAutonDefense(int[] preciseAutonDefense) {
+		this.preciseAutonDefense = preciseAutonDefense;
+	}
+
+	public String toString(){
+		String s;
+		try{
+			s = getCSVEntry();
+		} catch (InvalidDataException e){
+			s = "Error: " + e.getMessage();
+		}
+		return s;
 	}
 }
