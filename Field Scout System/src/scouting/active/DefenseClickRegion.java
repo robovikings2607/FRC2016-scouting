@@ -46,6 +46,7 @@ public class DefenseClickRegion extends JPanel{
 	public void reset(){
 		isSelected = false;
 		isFilled = false;
+		setToolTipText(null);
 		defenseName = emptyText;
 		repaint();
 	}
@@ -104,7 +105,7 @@ public class DefenseClickRegion extends JPanel{
 	}
 	
 	public int getDefenseNumber(){
-		return defenseNumber + 1;
+		return defenseNumber;
 	}
 	
 	private DefenseClickRegion getThis(){
@@ -126,7 +127,7 @@ public class DefenseClickRegion extends JPanel{
 			default: name = "Unspecified Color";
 		}
 		
-		name += " " + (6 - getDefenseNumber()) + ": " + getDefenseName();
+		name += " " + getDefenseNumber() + ": " + getDefenseName();
 		return name;
 	}
 
@@ -137,7 +138,7 @@ public class DefenseClickRegion extends JPanel{
 		} else {
 			setBackground(unfilled);
 		}
-		g.drawString((6 - getDefenseNumber()) + "", getWidth() / 2, getHeight() / 2);
+		g.drawString(getDefenseNumber() + "", getWidth() / 2, getHeight() / 2);
 		if(isSelected){
 			setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.YELLOW));
 		} else {

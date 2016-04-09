@@ -45,8 +45,8 @@ public class DataWriter {
 		writer.print(md.getBreach().name() + ",");
 		
 		FieldLayout fl = md.getLayout();
-		OuterWorks blue = fl.getRedOuterWorks();
-		OuterWorks red = fl.getBlueOuterWorks();
+		OuterWorks red = fl.getRedOuterWorks();
+		OuterWorks blue = fl.getBlueOuterWorks();
 		for(int i = 0; i < 5; i++){
 			writer.print(red.getDefense(i + 1).getName() + ",");
 		}

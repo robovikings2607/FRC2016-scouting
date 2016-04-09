@@ -88,13 +88,13 @@ public class FieldScoutGUI extends JPanel implements ActionListener{
 		
 		ClickableOuterWorks blueOuterWorks = new ClickableOuterWorks(selector, AllianceColor.BLUE);
 		for(int i = 0; i < 4; i++){
-			DefenseClickRegion dcr = new DefenseClickRegion(i, new Rectangle(244, 78 + 54 * i, 23, 51));
+			DefenseClickRegion dcr = new DefenseClickRegion(5 - i, new Rectangle(244, 78 + 54 * i, 23, 51));
 			blueOuterWorks.addDefense(dcr);
 		}
 		
 		ClickableOuterWorks redOuterWorks = new ClickableOuterWorks(selector, AllianceColor.RED);
 		for(int i = 0; i < 4; i++){
-			DefenseClickRegion dcr = new DefenseClickRegion(i, new Rectangle(469, 237 - 54 * i, 23, 51));
+			DefenseClickRegion dcr = new DefenseClickRegion(5 - i, new Rectangle(469, 237 - 54 * i, 23, 51));
 			redOuterWorks.addDefense(dcr);
 		}
 		
@@ -143,7 +143,7 @@ public class FieldScoutGUI extends JPanel implements ActionListener{
 	 * DO NOT CALL unless the validateData method has been called on both {@link ClickableOuterWorks}'s and the {@link InfoPanel}.
 	 */
 	private void extractData(){
-		FieldLayout fl = new FieldLayout(cowList[0].getData(), cowList[1].getData());
+		FieldLayout fl = new FieldLayout(cowList[1].getData(), cowList[0].getData());
 		MatchData md = info.getData();
 		md.setLayout(fl);
 		

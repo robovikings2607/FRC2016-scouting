@@ -18,7 +18,7 @@ public class ClickableOuterWorks {
 	}
 	
 	public void addDefense(DefenseClickRegion dcr){
-		defenses[dcr.getDefenseNumber()- 1] = dcr;
+		defenses[dcr.getDefenseNumber()- 2] = dcr;
 		dcr.addToOuterWorks(this);
 	}
 	
@@ -52,17 +52,18 @@ public class ClickableOuterWorks {
 	}
 	
 	public void selectNext(int callNum){
+		int defenseIndex = callNum - 2;
 		clearBorders();
-		if(callNum < defenses.length){
-			defenses[callNum].setIsSelected(true);
-			displaySelector(defenses[callNum]);
+		if(defenseIndex > 0){
+			defenses[defenseIndex - 1].setIsSelected(true);
+			displaySelector(defenses[defenseIndex - 1]);
 		}
 	}
 	
 	public OuterWorks getData(){
 		String[] defenseNames = new String[defenses.length + 1];
 		for(int i = 0; i < defenses.length; i++){
-			defenseNames[i + 1] = defenses[defenses.length-i-1].getDefenseName();
+			defenseNames[i + 1] = defenses[i].getDefenseName();
 		}
 		defenseNames[0] = "Low Bar";
 		return new OuterWorks(defenseNames);
@@ -71,11 +72,11 @@ public class ClickableOuterWorks {
 	public String validateData(){
 		for(int i = 0; i < defenses.length; i++){
 			if(defenses[i].getDefenseName().equals(DefenseClickRegion.emptyText)){
-				return "Unfilled defense: " + getColor().name() + " " + (6 - defenses[i].getDefenseNumber());
+				return "Unfilled defense: " + defenses[i].toString();
 			}
 			for(int j = i + 1; j < defenses.length; j++){
 				if(Defense.findGroup(defenses[i].getDefenseName()) == Defense.findGroup(defenses[j].getDefenseName())){
-					return "Group conflict between " + getColor().name() + " " + (6 - defenses[i].getDefenseNumber()) + " and " + (6 - defenses[j].getDefenseNumber());
+					return "Group conflict between " + defenses[i].toString() + " and " + defenses[j].toString();
 				}
 			}
 		}
