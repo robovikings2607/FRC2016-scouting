@@ -46,7 +46,7 @@ public class FieldMatch {
 		}
 		rd.setPreciseDefenseAvoids(preciseAvoids);
 		
-		rd.setPreciseAutonDefense(idDefenses(rd.getAutonDefense(),!red));
+	//	rd.setPreciseAutonDefense(idDefenses(rd.getAutonDefense(),!red));
 		rd.setDefensesIdentified(true);
 		
 		if(red){

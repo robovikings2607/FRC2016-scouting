@@ -3,9 +3,13 @@ package dataStorage;
 import errorHandling.InvalidDataException;
 
 public class RobotData {
-	private String scoutName, positionID, defenseComments, crossingComments, skillComments;
+	private String scoutName, positionID, comments; //defenseComments, crossingComments, skillComments;
+	
+	private int autonDefense;
+	private String preciseAutonDefense;
+	
 	private int[] defenseCrossings;
-	private int[] autonDefense;
+	//private int[] autonDefense;
 	private int teamNumber, matchNumber, highGoalHit,highGoalMiss,lowGoalHit,
 				lowGoalMiss,autonHighHit,autonHighMiss,autonLowHit,autonlowMiss,fouls,techFouls;
 	private int esBrokien,absent,stuck,autonDefenseReached,TowerScaled,
@@ -13,7 +17,7 @@ public class RobotData {
 	
 	private int[] preciseDefenseCrossings;
 	private int[] preciseDefenseAvoids;
-	private int[] preciseAutonDefense;
+	//private int[] preciseAutonDefense;
 	private boolean defensesIdentified;
 	
 	public RobotData(String[] rawCSVData) throws InvalidDataException{
@@ -38,16 +42,21 @@ public class RobotData {
 		int[] numerVals = {esBrokien, absent, stuck};
 		numerVals = concat(numerVals, preciseDefenseCrossings);
 		numerVals = concat(numerVals, preciseDefenseAvoids);
-		numerVals = concat(numerVals, preciseAutonDefense);
+		//numerVals = concat(numerVals, preciseAutonDefense);
 		int[] remainingVals = {highGoalHit,highGoalMiss,lowGoalHit,lowGoalMiss,autonHighHit,
 				autonHighMiss,autonLowHit,autonlowMiss,autonDefenseReached,TowerScaled,
 				TowerChallenged,fouls,techFouls,Breach,Capture,Win};
 		numerVals = concat(numerVals, remainingVals);
 		for(int i = 0; i < numerVals.length; i++){
 			csv += numerVals[i] + ",";
+			
+			if(i == 29){
+				csv += preciseAutonDefense + ",";
+			}
 		}
 		
-		csv += defenseComments + "," + crossingComments + "," + skillComments;
+	//	csv += defenseComments + "," + crossingComments + "," + skillComments;
+		csv += comments;
 		return csv;
 	}
 	
@@ -66,9 +75,9 @@ public class RobotData {
 		return defenseCrossings;
 	}
 
-	public int[] getAutonDefense() {
+/*	public int[] getAutonDefense() {
 		return autonDefense;
-	}
+	} */
 	
 	public String getPositionID() {
 		return positionID;
@@ -98,9 +107,9 @@ public class RobotData {
 		this.preciseDefenseAvoids = preciseDefenseAvoids;
 	}
 
-	public void setPreciseAutonDefense(int[] preciseAutonDefense) {
+/*	public void setPreciseAutonDefense(int[] preciseAutonDefense) {
 		this.preciseAutonDefense = preciseAutonDefense;
-	}
+	} */
 
 	public String toString(){
 		String s;
@@ -110,5 +119,13 @@ public class RobotData {
 			s = "Error: " + e.getMessage();
 		}
 		return s;
+	}
+
+	public int getAutonDefense() {
+		return autonDefense;
+	}
+
+	public void setPreciseAutonDefense(String preciseAutonDefense) {
+		this.preciseAutonDefense = preciseAutonDefense;
 	}
 }

@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 import dataStorage.FieldData;
 /**
- * Oh my this class is big. Very, very big. I should refactor this sometime later, for sure, but now is most certainly
- * not the time.
+ * Oh my this class is big. Very, very big. I should refactor this sometime later, for sure, 
+ * but now is most certainly not the time.
  * @author Michael
  *
  */
@@ -32,8 +32,8 @@ public class CompleteDataWriter {
 									"RD4Crossings","RD5Crossings","BD1Crossings","BD2Crossings",
 									"BD3Crossings","BD4Crossings","BD5Crossings","AutonHighHit",
 									"AutonHighMiss","AutonLowHit","AutonLowMiss","AutonDefenseReached",
-									"AutonDefenseCrossed","TowerScaled","TowerChallenged","Fouls","TechFouls",
-									"Comments"};
+									"AutonDefenseCrossed","TowerScaled","TowerChallenged","Fouls",
+									"TechFouls","Comments"};
 	private static final String[] defenses = {"Cheval de Frise","Portcullis","Moat","Ramparts",
 									"Drawbridge","Sally Port","Rock Wall","Rough Terrain","Low Bar"};
 	private FieldData fieldScoutData;
@@ -62,10 +62,10 @@ public class CompleteDataWriter {
 	 * @param robotScoutCSV The file to be written in.
 	 */
 	public void write(File robotScoutCSV){
-		/*if(detectFatalError(robotScoutCSV)){
+		if(detectFatalError(robotScoutCSV)){
 			System.out.println("Fatal error caused. File unreadable." + "\n");
 			return;
-		} */
+		}
 		try{
 			BufferedReader read = new BufferedReader(new FileReader(robotScoutCSV));
 			String line = read.readLine();
